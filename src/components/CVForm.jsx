@@ -12,6 +12,7 @@ function CVForm() {
     linkedin: '',
     github: '',
     profile: '',
+    photo: null,
     workExperience: [{ period: '', title: '', company: '', description: '' }],
     education: [{ degree: '', period: '' }],
     training: [{ title: '', period: '' }],
@@ -37,6 +38,17 @@ function CVForm() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handlePhotoUpload = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setFormData({ ...formData, photo: reader.result })
+      }
+      reader.readAsDataURL(file)
+    }
   }
 
   const handleArrayChange = (section, index, field, value) => {
@@ -89,6 +101,10 @@ function CVForm() {
               <input name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone" />
               <input name="linkedin" value={formData.linkedin} onChange={handleChange} placeholder="LinkedIn URL" />
               <input name="github" value={formData.github} onChange={handleChange} placeholder="GitHub URL" />
+              <div className="photo-upload">
+                <label htmlFor="photo">Upload Photo</label>
+                <input type="file" id="photo" accept="image/*" onChange={handlePhotoUpload} />
+              </div>
             </div>
 
             <div className="form-section collapsible">
@@ -281,9 +297,11 @@ function CVForm() {
         <div className="cv-preview" ref={cvRef}>
           <div className="cv-header">
             <h1>{formData.fullName || 'Your Name'}</h1>
-            <div className="cv-photo">
-              <User size={60} />
-            </div>
+            {formData.photo && (
+              <div className="cv-photo">
+                <img src={formData.photo} alt="Profile" />
+              </div>
+            )}
           </div>
 
           <div className="cv-columns">
