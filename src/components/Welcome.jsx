@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { FileText, ArrowRight, CheckCircle } from 'lucide-react'
 import '../styles/Welcome.css'
 
-function Welcome() {
+function Welcome({ onGetStarted }) {
   const [animationKey, setAnimationKey] = useState(0)
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function Welcome() {
           <li><CheckCircle size={20} /> Download in PDF format with one click</li>
         </ul>
 
-        <button className="cta">
+        <button className="cta" onClick={onGetStarted}>
           Start Creating <ArrowRight size={20} />
         </button>
       </div>
