@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { User, ChevronDown, ChevronUp, Plus, Trash2, Mail, Phone, Linkedin, Github, Languages, Award, Briefcase, GraduationCap, BookOpen, FolderGit2 } from 'lucide-react'
+import html2pdf from 'html2pdf.js'
 import '../styles/CVForm.css'
 
 function CVForm() {
+  const cvRef = useRef()
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -59,6 +61,18 @@ function CVForm() {
   const removeItem = (section, index) => {
     const newArray = formData[section].filter((_, i) => i !== index)
     setFormData({ ...formData, [section]: newArray })
+  }
+
+  const downloadPDF = () => {
+    const element = cvRef.current
+    const opt = {
+      margin: 0,
+      filename: `${formData.fullName || 'CV'}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    }
+    html2pdf().set(opt).from(element).save()
   }
 
   return (
@@ -260,11 +274,11 @@ function CVForm() {
           </div>
         </div>
 
-        <button className="download-btn">Download PDF</button>
+        <button className="download-btn" onClick={downloadPDF}>Download PDF</button>
       </div>
 
       <div className="preview-side">
-        <div className="cv-preview">
+        <div className="cv-preview" ref={cvRef}>
           <div className="cv-header">
             <h1>{formData.fullName || 'Your Name'}</h1>
             <div className="cv-photo">
