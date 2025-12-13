@@ -6,7 +6,7 @@ import '../styles/CVForm.css'
 function CVForm() {
   const cvRef = useRef()
   const [accentColor, setAccentColor] = useState('#2563eb')
-  const [selectedFont, setSelectedFont] = useState('Inter')
+  const [selectedFont, setSelectedFont] = useState('Arial')
   const [showDesignModal, setShowDesignModal] = useState(false)
   const [formData, setFormData] = useState({
     fullName: '',
@@ -112,14 +112,11 @@ function CVForm() {
                 <div className="option">
                   <label>Font Family</label>
                   <select value={selectedFont} onChange={(e) => setSelectedFont(e.target.value)}>
-                    <option value="Inter">Inter</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Calibri">Calibri</option>
                     <option value="Roboto">Roboto</option>
-                    <option value="Open Sans">Open Sans</option>
-                    <option value="Lato">Lato</option>
-                    <option value="Montserrat">Montserrat</option>
-                    <option value="Poppins">Poppins</option>
-                    <option value="Playfair Display">Playfair Display</option>
-                    <option value="Merriweather">Merriweather</option>
                   </select>
                 </div>
               </div>
