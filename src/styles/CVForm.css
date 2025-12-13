@@ -344,12 +344,41 @@
 }
 
 .preview-side {
-  background: #4e32325e;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 3rem;
   overflow-y: auto;
   max-height: 100vh;
   display: flex;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.preview-side::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  animation: floatPreview 20s infinite ease-in-out;
+}
+
+.preview-side::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  bottom: -100px;
+  left: -100px;
+  animation: floatPreview 15s infinite ease-in-out reverse;
+}
+
+@keyframes floatPreview {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, 30px); }
 }
 
 .cv-preview {
@@ -357,8 +386,11 @@
   max-width: 800px;
   background: white;
   padding: 3rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
   min-height: 1000px;
+  position: relative;
+  z-index: 1;
+  border-radius: 16px;
 }
 
 .cv-header {

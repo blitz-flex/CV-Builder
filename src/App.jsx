@@ -1,16 +1,16 @@
-import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Welcome from './components/Welcome'
 import CVForm from './components/CVForm'
 import './styles/App.css'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('welcome')
-
   return (
-    <>
-      {currentPage === 'welcome' && <Welcome onGetStarted={() => setCurrentPage('form')} />}
-      {currentPage === 'form' && <CVForm />}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/create" element={<CVForm />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
