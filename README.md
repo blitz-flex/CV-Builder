@@ -71,4 +71,4 @@ npm run preview
 
 ## 🔗 Links
 
-- [Live Demo]()
+- [Live Demo](https://cv-builds.netlify.app/)
