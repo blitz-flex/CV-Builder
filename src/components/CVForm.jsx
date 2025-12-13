@@ -5,7 +5,7 @@ import '../styles/CVForm.css'
 
 function CVForm() {
   const cvRef = useRef()
-  const [accentColor, setAccentColor] = useState('#e91e63')
+  const [accentColor, setAccentColor] = useState('#2563eb')
   const [selectedFont, setSelectedFont] = useState('Inter')
   const [showDesignModal, setShowDesignModal] = useState(false)
   const [formData, setFormData] = useState({

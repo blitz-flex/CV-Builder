@@ -55,8 +55,8 @@
 
 .design-btn:hover {
   background: #f9fafb;
-  border-color: #e91e63;
-  color: #e91e63;
+  border-color: #2563eb;
+  color: #2563eb;
 }
 
 .modal-overlay {
@@ -148,7 +148,7 @@
 }
 
 .option:hover {
-  border-color: #e91e63;
+  border-color: #2563eb;
   background: white;
 }
 
@@ -171,7 +171,7 @@
 }
 
 .option input[type="color"]:hover {
-  border-color: #e91e63;
+  border-color: #2563eb;
 }
 
 .option input[type="color"]::-webkit-color-swatch-wrapper {
@@ -197,12 +197,12 @@
 }
 
 .option select:hover {
-  border-color: #e91e63;
+  border-color: #2563eb;
 }
 
 .option select:focus {
   outline: none;
-  border-color: #e91e63;
+  border-color: #2563eb;
 }
 
 .form-section {
@@ -254,7 +254,7 @@
 .form-section input:focus,
 .form-section textarea:focus {
   outline: none;
-  border-color: #e91e63;
+  border-color: #2563eb;
 }
 
 .form-section textarea {
@@ -282,7 +282,7 @@
 }
 
 .photo-upload input[type="file"]::-webkit-file-upload-button {
-  background: #e91e63;
+  background: #2563eb;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -292,12 +292,12 @@
 }
 
 .photo-upload input[type="file"]::-webkit-file-upload-button:hover {
-  background: #c2185b;
+  background: #1d4ed8;
 }
 
 .download-btn {
   width: 100%;
-  background: #e91e63;
+  background: #2563eb;
   color: white;
   border: none;
   padding: 1rem;
@@ -308,7 +308,7 @@
 }
 
 .download-btn:hover {
-  background: #c2185b;
+  background: #1d4ed8;
 }
 
 .array-item {
@@ -381,7 +381,7 @@
   align-items: center;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 3px solid #e91e63;
+  border-bottom: 3px solid #2563eb;
 }
 
 .cv-header h1 {
@@ -437,7 +437,7 @@
 .cv-block h3 {
   font-size: 1rem;
   font-weight: 700;
-  color: #e91e63;
+  color: #2563eb;
   margin-bottom: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -508,7 +508,7 @@
   .cv-builder {
     grid-template-columns: 1fr;
   }
-  
+
   .preview-side {
     display: none;
   }
