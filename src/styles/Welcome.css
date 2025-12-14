@@ -252,6 +252,12 @@ h1 {
   }
 }
 
+@media (max-width: 350px) {
+  .right {
+    display: none;
+  }
+}
+
 @media (max-width: 640px) {
   .welcome {
     padding: 1rem;
@@ -284,12 +290,5 @@ h1 {
     font-size: 0.95rem;
     width: 100%;
     justify-content: center;
-  }
-
-  .paper {
-    width: 100%;
-    max-width: 280px;
-    height: 360px;
-    padding: 1.5rem;
   }
 }
