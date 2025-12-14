@@ -526,8 +526,57 @@
   .cv-builder {
     grid-template-columns: 1fr;
   }
-  
+
   .preview-side {
     display: none;
+  }
+
+  .form-side {
+    padding: 2rem 1.5rem;
+  }
+
+  .form-side h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .form-side {
+    padding: 1.5rem 1rem;
+  }
+
+  .form-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .form-side h2 {
+    font-size: 1.35rem;
+  }
+
+  .design-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form-section input,
+  .form-section textarea {
+    font-size: 16px;
+  }
+
+  .download-btn {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .array-item {
+    padding: 0.75rem;
+  }
+
+  .add-btn {
+    font-size: 0.85rem;
   }
 }
