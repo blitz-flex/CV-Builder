@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react'
 import { Palette } from 'lucide-react'
-import html2pdf from 'html2pdf.js'
 import PersonalInfo from './form/PersonalInfo'
 import Profile from './form/Profile'
 import WorkExperience from './form/WorkExperience'
@@ -11,9 +10,10 @@ import Skills from './form/Skills'
 import Programs from './form/Programs'
 import Projects from './form/Projects'
 import CVPreview from './preview/CVPreview'
-import { FONTS, DEFAULT_FONT } from './config/fonts'
-import { DEFAULT_ACCENT_COLOR } from './config/colors'
-import { FORM_TEMPLATES, INITIAL_FORM_DATA, INITIAL_COLLAPSED_STATE } from './config/formTemplates'
+import { FONTS, DEFAULT_FONT } from '../config/fonts'
+import { DEFAULT_ACCENT_COLOR } from '../config/colors'
+import { FORM_TEMPLATES, INITIAL_FORM_DATA, INITIAL_COLLAPSED_STATE } from '../config/formTemplates'
+import { generatePDF } from '../utils/pdfGenerator'
 import '../styles/CVForm.css'
 
 function CVForm() {
@@ -59,15 +59,7 @@ function CVForm() {
   }
 
   const downloadPDF = () => {
-    const element = cvRef.current
-    const opt = {
-      margin: 0,
-      filename: `${formData.fullName || 'CV'}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    }
-    html2pdf().set(opt).from(element).save()
+    generatePDF(cvRef.current, formData.fullName || 'CV')
   }
 
   return (
