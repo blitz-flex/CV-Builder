@@ -48,8 +48,10 @@ function CVForm() {
   }
 
   const removeItem = (section, index) => {
-    const newArray = formData[section].filter((_, i) => i !== index)
-    setFormData({ ...formData, [section]: newArray })
+    if (formData[section].length > 1) {
+      const newArray = formData[section].filter((_, i) => i !== index)
+      setFormData({ ...formData, [section]: newArray })
+    }
   }
 
   const downloadPDF = () => {

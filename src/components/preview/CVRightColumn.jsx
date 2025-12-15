@@ -46,8 +46,9 @@ function CVRightColumn({ formData, accentColor }) {
           {formData.training.map((item, index) => (
             item.title ? (
               <div key={index}>
-                <p>{item.title}</p>
+                <h4>{item.title}</h4>
                 <p className="period">{item.period}</p>
+                {item.description && <p>{item.description}</p>}
               </div>
             ) : null
           ))}
@@ -56,12 +57,13 @@ function CVRightColumn({ formData, accentColor }) {
 
       {formData.projects.some(item => item.title) && (
         <div className="cv-block">
-          <h3 style={{ color: accentColor }}><FolderGit2 size={16} /> Projects</h3>
+          <h3 style={{ color: accentColor}}><FolderGit2 size={16} /> Projects</h3>
           {formData.projects.map((item, index) => (
             item.title ? (
               <div key={index}>
                 <h4>{item.title}</h4>
-                <p>{item.description}</p>
+                {item.description && <p>{item.description}</p>}
+                {item.link && <p><a href={item.link} target="_blank" rel="noopener noreferrer" className="link">Link</a></p>}
               </div>
             ) : null
           ))}

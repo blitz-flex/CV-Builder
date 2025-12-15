@@ -13,6 +13,7 @@ function Projects({ data, collapsed, onToggle, onChange, onAdd, onRemove }) {
             <div key={index} className="array-item">
               <input value={item.title} onChange={(e) => onChange(index, 'title', e.target.value)} placeholder="Project Title" />
               <textarea value={item.description} onChange={(e) => onChange(index, 'description', e.target.value)} placeholder="Description" rows="2" />
+              <input value={item.link} onChange={(e) => onChange(index, 'link', e.target.value)} placeholder="Project Link (URL)" />
               {data.length > 1 && (
                 <button type="button" className="remove-btn" onClick={() => onRemove(index)}>
                   <Trash2 size={16} />

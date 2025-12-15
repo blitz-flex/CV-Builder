@@ -1,11 +1,11 @@
 export const FORM_TEMPLATES = {
   workExperience: { period: '', title: '', company: '', description: '' },
   education: { degree: '', period: '' },
-  training: { title: '', period: '' },
+  training: { title: '', period: '', description: '' },
   languages: { name: '' },
   skills: { name: '' },
   programs: { name: '' },
-  projects: { title: '', description: '' }
+  projects: { title: '', description: '', link: '' }
 }
 
 export const INITIAL_FORM_DATA = {
@@ -16,13 +16,13 @@ export const INITIAL_FORM_DATA = {
   github: '',
   profile: '',
   photo: null,
-  workExperience: [],
-  education: [],
-  training: [],
-  languages: [],
-  skills: [],
-  programs: [],
-  projects: []
+  workExperience: [{ period: '', title: '', company: '', description: '' }],
+  education: [{ degree: '', period: '' }],
+  training: [{ title: '', period: '', description: '' }],
+  languages: [{ name: '' }],
+  skills: [{ name: '' }],
+  programs: [{ name: '' }],
+  projects: [{ title: '', description: '', link: '' }]
 }
 
 export const INITIAL_COLLAPSED_STATE = {
