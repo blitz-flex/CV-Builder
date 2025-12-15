@@ -11,39 +11,18 @@ import Skills from './form/Skills'
 import Programs from './form/Programs'
 import Projects from './form/Projects'
 import CVPreview from './preview/CVPreview'
+import { FONTS, DEFAULT_FONT } from './config/fonts'
+import { DEFAULT_ACCENT_COLOR } from './config/colors'
+import { FORM_TEMPLATES, INITIAL_FORM_DATA, INITIAL_COLLAPSED_STATE } from './config/formTemplates'
 import '../styles/CVForm.css'
 
 function CVForm() {
   const cvRef = useRef()
-  const [accentColor, setAccentColor] = useState('#2563eb')
-  const [selectedFont, setSelectedFont] = useState('Arial')
+  const [accentColor, setAccentColor] = useState(DEFAULT_ACCENT_COLOR)
+  const [selectedFont, setSelectedFont] = useState(DEFAULT_FONT)
   const [showDesignModal, setShowDesignModal] = useState(false)
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    linkedin: '',
-    github: '',
-    profile: '',
-    photo: null,
-    workExperience: [{ period: '', title: '', company: '', description: '' }],
-    education: [{ degree: '', period: '' }],
-    training: [{ title: '', period: '' }],
-    languages: [{ name: '' }],
-    skills: [{ name: '' }],
-    programs: [{ name: '' }],
-    projects: [{ title: '', description: '' }]
-  })
-
-  const [collapsed, setCollapsed] = useState({
-    education: false,
-    workExperience: false,
-    training: false,
-    languages: false,
-    skills: false,
-    programs: false,
-    projects: false
-  })
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA)
+  const [collapsed, setCollapsed] = useState(INITIAL_COLLAPSED_STATE)
 
   const toggleSection = (section) => {
     setCollapsed({ ...collapsed, [section]: !collapsed[section] })
@@ -71,16 +50,7 @@ function CVForm() {
   }
 
   const addItem = (section) => {
-    const templates = {
-      workExperience: { period: '', title: '', company: '', description: '' },
-      education: { degree: '', period: '' },
-      training: { title: '', period: '' },
-      languages: { name: '' },
-      skills: { name: '' },
-      programs: { name: '' },
-      projects: { title: '', description: '' }
-    }
-    setFormData({ ...formData, [section]: [...formData[section], templates[section]] })
+    setFormData({ ...formData, [section]: [...formData[section], FORM_TEMPLATES[section]] })
   }
 
   const removeItem = (section, index) => {
@@ -122,11 +92,9 @@ function CVForm() {
                 <div className="option">
                   <label>Font Family</label>
                   <select value={selectedFont} onChange={(e) => setSelectedFont(e.target.value)}>
-                    <option value="Arial">Arial</option>
-                    <option value="Helvetica">Helvetica</option>
-                    <option value="Times New Roman">Times New Roman</option>
-                    <option value="Calibri">Calibri</option>
-                    <option value="Roboto">Roboto</option>
+                    {FONTS.map(font => (
+                      <option key={font.value} value={font.value}>{font.label}</option>
+                    ))}
                   </select>
                 </div>
               </div>
