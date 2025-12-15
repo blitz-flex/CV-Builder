@@ -1,6 +1,15 @@
 import { useState, useRef } from 'react'
-import { User, ChevronDown, ChevronUp, Plus, Trash2, Mail, Phone, Linkedin, Github, Languages, Award, Briefcase, GraduationCap, BookOpen, FolderGit2, Palette } from 'lucide-react'
+import { User, Mail, Phone, Linkedin, Github, Languages as LanguagesIcon, Award, Briefcase, GraduationCap, BookOpen, FolderGit2, Palette } from 'lucide-react'
 import html2pdf from 'html2pdf.js'
+import PersonalInfo from './form/PersonalInfo'
+import Profile from './form/Profile'
+import WorkExperience from './form/WorkExperience'
+import Education from './form/Education'
+import Training from './form/Training'
+import Languages from './form/Languages'
+import Skills from './form/Skills'
+import Programs from './form/Programs'
+import Projects from './form/Projects'
 import '../styles/CVForm.css'
 
 function CVForm() {
@@ -126,199 +135,81 @@ function CVForm() {
         
         <div className="form-columns">
           <div className="form-column">
-            <div className="form-section">
-              <h3>Personal Information</h3>
-              <input name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Full Name" />
-              <input name="email" value={formData.email} onChange={handleChange} placeholder="Email" />
-              <input name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone" />
-              <input name="linkedin" value={formData.linkedin} onChange={handleChange} placeholder="LinkedIn URL" />
-              <input name="github" value={formData.github} onChange={handleChange} placeholder="GitHub URL" />
-              <div className="photo-upload">
-                <label htmlFor="photo">Upload Photo</label>
-                <input type="file" id="photo" accept="image/*" onChange={handlePhotoUpload} />
-              </div>
-            </div>
+            <PersonalInfo 
+              formData={formData} 
+              onChange={handleChange} 
+              onPhotoUpload={handlePhotoUpload} 
+            />
 
-            <div className="form-section collapsible">
-              <div className="section-header" onClick={() => toggleSection('languages')}>
-                <h3>Languages</h3>
-                {collapsed.languages ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
-              </div>
-              {!collapsed.languages && (
-                <>
-                  {formData.languages.map((item, index) => (
-                    <div key={index} className="array-item">
-                      <input value={item.name} onChange={(e) => handleArrayChange('languages', index, 'name', e.target.value)} placeholder="Language" />
-                      {formData.languages.length > 1 && (
-                        <button type="button" className="remove-btn" onClick={() => removeItem('languages', index)}>
-                          <Trash2 size={16} />
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                  <button type="button" className="add-btn" onClick={() => addItem('languages')}>
-                    <Plus size={16} /> Add Language
-                  </button>
-                </>
-              )}
-            </div>
+            <Languages
+              data={formData.languages}
+              collapsed={collapsed.languages}
+              onToggle={() => toggleSection('languages')}
+              onChange={(index, field, value) => handleArrayChange('languages', index, field, value)}
+              onAdd={() => addItem('languages')}
+              onRemove={(index) => removeItem('languages', index)}
+            />
 
-            <div className="form-section collapsible">
-              <div className="section-header" onClick={() => toggleSection('skills')}>
-                <h3>Skills</h3>
-                {collapsed.skills ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
-              </div>
-              {!collapsed.skills && (
-                <>
-                  {formData.skills.map((item, index) => (
-                    <div key={index} className="array-item">
-                      <input value={item.name} onChange={(e) => handleArrayChange('skills', index, 'name', e.target.value)} placeholder="Skill" />
-                      {formData.skills.length > 1 && (
-                        <button type="button" className="remove-btn" onClick={() => removeItem('skills', index)}>
-                          <Trash2 size={16} />
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                  <button type="button" className="add-btn" onClick={() => addItem('skills')}>
-                    <Plus size={16} /> Add Skill
-                  </button>
-                </>
-              )}
-            </div>
+            <Skills
+              data={formData.skills}
+              collapsed={collapsed.skills}
+              onToggle={() => toggleSection('skills')}
+              onChange={(index, field, value) => handleArrayChange('skills', index, field, value)}
+              onAdd={() => addItem('skills')}
+              onRemove={(index) => removeItem('skills', index)}
+            />
 
-            <div className="form-section collapsible">
-              <div className="section-header" onClick={() => toggleSection('programs')}>
-                <h3>Programs & Software</h3>
-                {collapsed.programs ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
-              </div>
-              {!collapsed.programs && (
-                <>
-                  {formData.programs.map((item, index) => (
-                    <div key={index} className="array-item">
-                      <input value={item.name} onChange={(e) => handleArrayChange('programs', index, 'name', e.target.value)} placeholder="Program" />
-                      {formData.programs.length > 1 && (
-                        <button type="button" className="remove-btn" onClick={() => removeItem('programs', index)}>
-                          <Trash2 size={16} />
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                  <button type="button" className="add-btn" onClick={() => addItem('programs')}>
-                    <Plus size={16} /> Add Program
-                  </button>
-                </>
-              )}
-            </div>
+            <Programs
+              data={formData.programs}
+              collapsed={collapsed.programs}
+              onToggle={() => toggleSection('programs')}
+              onChange={(index, field, value) => handleArrayChange('programs', index, field, value)}
+              onAdd={() => addItem('programs')}
+              onRemove={(index) => removeItem('programs', index)}
+            />
           </div>
 
           <div className="form-column">
-            <div className="form-section">
-              <h3>Profile</h3>
-              <textarea name="profile" value={formData.profile} onChange={handleChange} placeholder="Profile/Summary" rows="3" />
-            </div>
+            <Profile 
+              value={formData.profile} 
+              onChange={handleChange} 
+            />
 
-            <div className="form-section collapsible">
-              <div className="section-header" onClick={() => toggleSection('workExperience')}>
-                <h3>Work Experience</h3>
-                {collapsed.workExperience ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
-              </div>
-              {!collapsed.workExperience && (
-                <>
-                  {formData.workExperience.map((item, index) => (
-                    <div key={index} className="array-item">
-                      <input value={item.period} onChange={(e) => handleArrayChange('workExperience', index, 'period', e.target.value)} placeholder="Period" />
-                      <input value={item.title} onChange={(e) => handleArrayChange('workExperience', index, 'title', e.target.value)} placeholder="Job Title" />
-                      <input value={item.company} onChange={(e) => handleArrayChange('workExperience', index, 'company', e.target.value)} placeholder="Company" />
-                      <textarea value={item.description} onChange={(e) => handleArrayChange('workExperience', index, 'description', e.target.value)} placeholder="Description" rows="2" />
-                      {formData.workExperience.length > 1 && (
-                        <button type="button" className="remove-btn" onClick={() => removeItem('workExperience', index)}>
-                          <Trash2 size={16} />
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                  <button type="button" className="add-btn" onClick={() => addItem('workExperience')}>
-                    <Plus size={16} /> Add Experience
-                  </button>
-                </>
-              )}
-            </div>
+            <WorkExperience
+              data={formData.workExperience}
+              collapsed={collapsed.workExperience}
+              onToggle={() => toggleSection('workExperience')}
+              onChange={(index, field, value) => handleArrayChange('workExperience', index, field, value)}
+              onAdd={() => addItem('workExperience')}
+              onRemove={(index) => removeItem('workExperience', index)}
+            />
 
-            <div className="form-section collapsible">
-              <div className="section-header" onClick={() => toggleSection('education')}>
-                <h3>Education</h3>
-                {collapsed.education ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
-              </div>
-              {!collapsed.education && (
-                <>
-                  {formData.education.map((item, index) => (
-                    <div key={index} className="array-item">
-                      <input value={item.degree} onChange={(e) => handleArrayChange('education', index, 'degree', e.target.value)} placeholder="Degree" />
-                      <input value={item.period} onChange={(e) => handleArrayChange('education', index, 'period', e.target.value)} placeholder="Period" />
-                      {formData.education.length > 1 && (
-                        <button type="button" className="remove-btn" onClick={() => removeItem('education', index)}>
-                          <Trash2 size={16} />
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                  <button type="button" className="add-btn" onClick={() => addItem('education')}>
-                    <Plus size={16} /> Add Education
-                  </button>
-                </>
-              )}
-            </div>
+            <Education
+              data={formData.education}
+              collapsed={collapsed.education}
+              onToggle={() => toggleSection('education')}
+              onChange={(index, field, value) => handleArrayChange('education', index, field, value)}
+              onAdd={() => addItem('education')}
+              onRemove={(index) => removeItem('education', index)}
+            />
 
-            <div className="form-section collapsible">
-              <div className="section-header" onClick={() => toggleSection('training')}>
-                <h3>Training & Certifications</h3>
-                {collapsed.training ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
-              </div>
-              {!collapsed.training && (
-                <>
-                  {formData.training.map((item, index) => (
-                    <div key={index} className="array-item">
-                      <input value={item.title} onChange={(e) => handleArrayChange('training', index, 'title', e.target.value)} placeholder="Title" />
-                      <input value={item.period} onChange={(e) => handleArrayChange('training', index, 'period', e.target.value)} placeholder="Period" />
-                      {formData.training.length > 1 && (
-                        <button type="button" className="remove-btn" onClick={() => removeItem('training', index)}>
-                          <Trash2 size={16} />
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                  <button type="button" className="add-btn" onClick={() => addItem('training')}>
-                    <Plus size={16} /> Add Training
-                  </button>
-                </>
-              )}
-            </div>
+            <Training
+              data={formData.training}
+              collapsed={collapsed.training}
+              onToggle={() => toggleSection('training')}
+              onChange={(index, field, value) => handleArrayChange('training', index, field, value)}
+              onAdd={() => addItem('training')}
+              onRemove={(index) => removeItem('training', index)}
+            />
 
-            <div className="form-section collapsible">
-              <div className="section-header" onClick={() => toggleSection('projects')}>
-                <h3>Projects</h3>
-                {collapsed.projects ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
-              </div>
-              {!collapsed.projects && (
-                <>
-                  {formData.projects.map((item, index) => (
-                    <div key={index} className="array-item">
-                      <input value={item.title} onChange={(e) => handleArrayChange('projects', index, 'title', e.target.value)} placeholder="Project Title" />
-                      <textarea value={item.description} onChange={(e) => handleArrayChange('projects', index, 'description', e.target.value)} placeholder="Description" rows="2" />
-                      {formData.projects.length > 1 && (
-                        <button type="button" className="remove-btn" onClick={() => removeItem('projects', index)}>
-                          <Trash2 size={16} />
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                  <button type="button" className="add-btn" onClick={() => addItem('projects')}>
-                    <Plus size={16} /> Add Project
-                  </button>
-                </>
-              )}
-            </div>
+            <Projects
+              data={formData.projects}
+              collapsed={collapsed.projects}
+              onToggle={() => toggleSection('projects')}
+              onChange={(index, field, value) => handleArrayChange('projects', index, field, value)}
+              onAdd={() => addItem('projects')}
+              onRemove={(index) => removeItem('projects', index)}
+            />
           </div>
         </div>
 
@@ -348,7 +239,7 @@ function CVForm() {
 
               {formData.languages.some(item => item.name) && (
                 <div className="cv-block">
-                  <h3 style={{ color: accentColor }}><Languages size={16} /> Languages</h3>
+                  <h3 style={{ color: accentColor }}><LanguagesIcon size={16} /> Languages</h3>
                   <p>{formData.languages.filter(item => item.name).map(item => item.name).join(', ')}</p>
                 </div>
               )}
