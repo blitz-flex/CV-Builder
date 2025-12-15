@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { User, Mail, Phone, Linkedin, Github, Languages as LanguagesIcon, Award, Briefcase, GraduationCap, BookOpen, FolderGit2, Palette } from 'lucide-react'
+import { Palette } from 'lucide-react'
 import html2pdf from 'html2pdf.js'
 import PersonalInfo from './form/PersonalInfo'
 import Profile from './form/Profile'
@@ -10,6 +10,7 @@ import Languages from './form/Languages'
 import Skills from './form/Skills'
 import Programs from './form/Programs'
 import Projects from './form/Projects'
+import CVPreview from './preview/CVPreview'
 import '../styles/CVForm.css'
 
 function CVForm() {
@@ -216,118 +217,12 @@ function CVForm() {
         <button className="download-btn" onClick={downloadPDF}>Download PDF</button>
       </div>
 
-      <div className="preview-side">
-        <div className="cv-preview" ref={cvRef} style={{ fontFamily: selectedFont }}>
-          <div className="cv-header" style={{ borderBottomColor: accentColor }}>
-            <h1>{formData.fullName || 'Your Name'}</h1>
-            {formData.photo && (
-              <div className="cv-photo">
-                <img src={formData.photo} alt="Profile" />
-              </div>
-            )}
-          </div>
-
-          <div className="cv-columns">
-            <div className="cv-left-column">
-              <div className="cv-block">
-                <h3 style={{ color: accentColor }}><User size={16} /> Personal Info</h3>
-                {formData.email && <p><Mail size={14} /> {formData.email}</p>}
-                {formData.phone && <p><Phone size={14} /> {formData.phone}</p>}
-                {formData.linkedin && <p><Linkedin size={14} /> <a href={formData.linkedin} target="_blank" rel="noopener noreferrer" className="link">LinkedIn</a></p>}
-                {formData.github && <p><Github size={14} /> <a href={formData.github} target="_blank" rel="noopener noreferrer" className="link">GitHub</a></p>}
-              </div>
-
-              {formData.languages.some(item => item.name) && (
-                <div className="cv-block">
-                  <h3 style={{ color: accentColor }}><LanguagesIcon size={16} /> Languages</h3>
-                  <p>{formData.languages.filter(item => item.name).map(item => item.name).join(', ')}</p>
-                </div>
-              )}
-
-              {formData.skills.some(item => item.name) && (
-                <div className="cv-block">
-                  <h3 style={{ color: accentColor }}><Award size={16} /> Skills</h3>
-                  <p>{formData.skills.filter(item => item.name).map(item => item.name).join(', ')}</p>
-                </div>
-              )}
-
-              {formData.programs.some(item => item.name) && (
-                <div className="cv-block">
-                  <h3 style={{ color: accentColor }}><Award size={16} /> Programs & Software</h3>
-                  <p>{formData.programs.filter(item => item.name).map(item => item.name).join(', ')}</p>
-                </div>
-              )}
-            </div>
-
-            <div className="cv-right-column">
-              {formData.profile && (
-                <div className="cv-block">
-                  <h3 style={{ color: accentColor }}><User size={16} /> Profile</h3>
-                  <p>{formData.profile}</p>
-                </div>
-              )}
-
-              {formData.workExperience.some(item => item.title || item.company) && (
-                <div className="cv-block">
-                  <h3 style={{ color: accentColor }}><Briefcase size={16} /> Work Experience</h3>
-                  {formData.workExperience.map((item, index) => (
-                    item.title || item.company ? (
-                      <div key={index} className="exp-item">
-                        <p className="period">{item.period}</p>
-                        <h4>{item.title}</h4>
-                        <p className="company">{item.company}</p>
-                        <p>{item.description}</p>
-                      </div>
-                    ) : null
-                  ))}
-                </div>
-              )}
-
-              {formData.education.some(item => item.degree) && (
-                <div className="cv-block">
-                  <h3 style={{ color: accentColor }}><GraduationCap size={16} /> Education</h3>
-                  {formData.education.map((item, index) => (
-                    item.degree ? (
-                      <div key={index}>
-                        <p>{item.degree}</p>
-                        <p className="period">{item.period}</p>
-                      </div>
-                    ) : null
-                  ))}
-                </div>
-              )}
-
-              {formData.training.some(item => item.title) && (
-                <div className="cv-block">
-                  <h3 style={{ color: accentColor }}><BookOpen size={16} /> Training & Certifications</h3>
-                  {formData.training.map((item, index) => (
-                    item.title ? (
-                      <div key={index}>
-                        <p>{item.title}</p>
-                        <p className="period">{item.period}</p>
-                      </div>
-                    ) : null
-                  ))}
-                </div>
-              )}
-
-              {formData.projects.some(item => item.title) && (
-                <div className="cv-block">
-                  <h3 style={{ color: accentColor }}><FolderGit2 size={16} /> Projects</h3>
-                  {formData.projects.map((item, index) => (
-                    item.title ? (
-                      <div key={index}>
-                        <h4>{item.title}</h4>
-                        <p>{item.description}</p>
-                      </div>
-                    ) : null
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
+      <CVPreview 
+        formData={formData}
+        accentColor={accentColor}
+        selectedFont={selectedFont}
+        cvRef={cvRef}
+      />
     </div>
   )
 }
