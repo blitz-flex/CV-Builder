@@ -16,21 +16,23 @@ export const INITIAL_FORM_DATA = {
   github: '',
   profile: '',
   photo: null,
-  workExperience: [FORM_TEMPLATES.workExperience],
-  education: [FORM_TEMPLATES.education],
-  training: [FORM_TEMPLATES.training],
-  languages: [FORM_TEMPLATES.languages],
-  skills: [FORM_TEMPLATES.skills],
-  programs: [FORM_TEMPLATES.programs],
-  projects: [FORM_TEMPLATES.projects]
+  workExperience: [],
+  education: [],
+  training: [],
+  languages: [],
+  skills: [],
+  programs: [],
+  projects: []
 }
 
 export const INITIAL_COLLAPSED_STATE = {
-  education: false,
-  workExperience: false,
-  training: false,
-  languages: false,
-  skills: false,
-  programs: false,
-  projects: false
+  personalInfo: true,
+  profile: true,
+  education: true,
+  workExperience: true,
+  training: true,
+  languages: true,
+  skills: true,
+  programs: true,
+  projects: true
 }

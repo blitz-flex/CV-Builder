@@ -43,7 +43,8 @@ function CVForm() {
   }
 
   const addItem = (section) => {
-    setFormData({ ...formData, [section]: [...formData[section], FORM_TEMPLATES[section]] })
+    setFormData({ ...formData, [section]: [...formData[section], { ...FORM_TEMPLATES[section] }] })
+    setCollapsed({ ...collapsed, [section]: false })
   }
 
   const removeItem = (section, index) => {

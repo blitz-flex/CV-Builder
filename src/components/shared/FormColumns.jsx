@@ -16,7 +16,16 @@ function FormColumns({ formData, collapsed, toggleSection, handleChange, handleP
         <PersonalInfo 
           formData={formData} 
           onChange={handleChange} 
-          onPhotoUpload={handlePhotoUpload} 
+          onPhotoUpload={handlePhotoUpload}
+          collapsed={collapsed.personalInfo}
+          onToggle={() => toggleSection('personalInfo')}
+        />
+
+        <Profile 
+          value={formData.profile} 
+          onChange={handleChange}
+          collapsed={collapsed.profile}
+          onToggle={() => toggleSection('profile')}
         />
 
         <FormSection name="languages" Component={Languages} formData={formData} collapsed={collapsed} toggleSection={toggleSection} handleArrayChange={handleArrayChange} addItem={addItem} removeItem={removeItem} />
@@ -25,10 +34,6 @@ function FormColumns({ formData, collapsed, toggleSection, handleChange, handleP
       </div>
 
       <div className="form-column">
-        <Profile 
-          value={formData.profile} 
-          onChange={handleChange} 
-        />
 
         <FormSection name="workExperience" Component={WorkExperience} formData={formData} collapsed={collapsed} toggleSection={toggleSection} handleArrayChange={handleArrayChange} addItem={addItem} removeItem={removeItem} />
         <FormSection name="education" Component={Education} formData={formData} collapsed={collapsed} toggleSection={toggleSection} handleArrayChange={handleArrayChange} addItem={addItem} removeItem={removeItem} />
