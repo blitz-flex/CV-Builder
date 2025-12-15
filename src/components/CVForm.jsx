@@ -1,16 +1,9 @@
 import { useState, useRef } from 'react'
 import { Palette } from 'lucide-react'
-import PersonalInfo from './form/PersonalInfo'
-import Profile from './form/Profile'
-import WorkExperience from './form/WorkExperience'
-import Education from './form/Education'
-import Training from './form/Training'
-import Languages from './form/Languages'
-import Skills from './form/Skills'
-import Programs from './form/Programs'
-import Projects from './form/Projects'
 import CVPreview from './preview/CVPreview'
-import { FONTS, DEFAULT_FONT } from '../config/fonts'
+import DesignModal from './shared/DesignModal'
+import FormColumns from './shared/FormColumns'
+import { DEFAULT_FONT } from '../config/fonts'
 import { DEFAULT_ACCENT_COLOR } from '../config/colors'
 import { FORM_TEMPLATES, INITIAL_FORM_DATA, INITIAL_COLLAPSED_STATE } from '../config/formTemplates'
 import { generatePDF } from '../utils/pdfGenerator'
@@ -72,107 +65,25 @@ function CVForm() {
           </button>
         </div>
 
-        {showDesignModal && (
-          <div className="modal-overlay-left" onClick={() => setShowDesignModal(false)}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <h3><Palette size={24} /> Customize Design</h3>
-              <div className="design-options">
-                <div className="option">
-                  <label>Theme Color</label>
-                  <input type="color" value={accentColor} onChange={(e) => setAccentColor(e.target.value)} />
-                </div>
-                <div className="option">
-                  <label>Font Family</label>
-                  <select value={selectedFont} onChange={(e) => setSelectedFont(e.target.value)}>
-                    {FONTS.map(font => (
-                      <option key={font.value} value={font.value}>{font.label}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+        <DesignModal
+          show={showDesignModal}
+          onClose={() => setShowDesignModal(false)}
+          accentColor={accentColor}
+          setAccentColor={setAccentColor}
+          selectedFont={selectedFont}
+          setSelectedFont={setSelectedFont}
+        />
         
-        <div className="form-columns">
-          <div className="form-column">
-            <PersonalInfo 
-              formData={formData} 
-              onChange={handleChange} 
-              onPhotoUpload={handlePhotoUpload} 
-            />
-
-            <Languages
-              data={formData.languages}
-              collapsed={collapsed.languages}
-              onToggle={() => toggleSection('languages')}
-              onChange={(index, field, value) => handleArrayChange('languages', index, field, value)}
-              onAdd={() => addItem('languages')}
-              onRemove={(index) => removeItem('languages', index)}
-            />
-
-            <Skills
-              data={formData.skills}
-              collapsed={collapsed.skills}
-              onToggle={() => toggleSection('skills')}
-              onChange={(index, field, value) => handleArrayChange('skills', index, field, value)}
-              onAdd={() => addItem('skills')}
-              onRemove={(index) => removeItem('skills', index)}
-            />
-
-            <Programs
-              data={formData.programs}
-              collapsed={collapsed.programs}
-              onToggle={() => toggleSection('programs')}
-              onChange={(index, field, value) => handleArrayChange('programs', index, field, value)}
-              onAdd={() => addItem('programs')}
-              onRemove={(index) => removeItem('programs', index)}
-            />
-          </div>
-
-          <div className="form-column">
-            <Profile 
-              value={formData.profile} 
-              onChange={handleChange} 
-            />
-
-            <WorkExperience
-              data={formData.workExperience}
-              collapsed={collapsed.workExperience}
-              onToggle={() => toggleSection('workExperience')}
-              onChange={(index, field, value) => handleArrayChange('workExperience', index, field, value)}
-              onAdd={() => addItem('workExperience')}
-              onRemove={(index) => removeItem('workExperience', index)}
-            />
-
-            <Education
-              data={formData.education}
-              collapsed={collapsed.education}
-              onToggle={() => toggleSection('education')}
-              onChange={(index, field, value) => handleArrayChange('education', index, field, value)}
-              onAdd={() => addItem('education')}
-              onRemove={(index) => removeItem('education', index)}
-            />
-
-            <Training
-              data={formData.training}
-              collapsed={collapsed.training}
-              onToggle={() => toggleSection('training')}
-              onChange={(index, field, value) => handleArrayChange('training', index, field, value)}
-              onAdd={() => addItem('training')}
-              onRemove={(index) => removeItem('training', index)}
-            />
-
-            <Projects
-              data={formData.projects}
-              collapsed={collapsed.projects}
-              onToggle={() => toggleSection('projects')}
-              onChange={(index, field, value) => handleArrayChange('projects', index, field, value)}
-              onAdd={() => addItem('projects')}
-              onRemove={(index) => removeItem('projects', index)}
-            />
-          </div>
-        </div>
+        <FormColumns
+          formData={formData}
+          collapsed={collapsed}
+          toggleSection={toggleSection}
+          handleChange={handleChange}
+          handlePhotoUpload={handlePhotoUpload}
+          handleArrayChange={handleArrayChange}
+          addItem={addItem}
+          removeItem={removeItem}
+        />
 
         <button className="download-btn" onClick={downloadPDF}>Download PDF</button>
       </div>
@@ -186,5 +97,4 @@ function CVForm() {
     </div>
   )
 }
-
 export default CVForm
