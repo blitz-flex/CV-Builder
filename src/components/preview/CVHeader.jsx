@@ -9,10 +9,10 @@ function CVHeader({ formData, accentColor }) {
       </div>
       <div className="header-right">
         {formData.email && <div className="contact-item"><Mail size={16} /> {formData.email}</div>}
-        {formData.phone && <div className="contact-item"><Phone size={16} /> {formData.phone}</div>}
-        {formData.location && <div className="contact-item"><MapPin size={16} /> {formData.location}</div>}
-        {formData.linkedin && <div className="contact-item"><Linkedin size={16} /> {formData.linkedin}</div>}
-        {formData.github && <div className="contact-item"><Github size={16} /> {formData.github}</div>}
+        {formData.phone && <div className="contact-item"><Phone size={16} /> {formData.phoneCode || '+995'} {formData.phone}</div>}
+
+        {formData.linkedin && <div className="contact-item"><Linkedin size={16} /> <a href={formData.linkedin.startsWith('http') ? formData.linkedin : `https://${formData.linkedin}`} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn</a></div>}
+        {formData.github && <div className="contact-item"><Github size={16} /> <a href={formData.github.startsWith('http') ? formData.github : `https://${formData.github}`} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>GitHub</a></div>}
       </div>
     </div>
   )

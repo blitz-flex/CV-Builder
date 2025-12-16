@@ -12,6 +12,7 @@ export const INITIAL_FORM_DATA = {
   fullName: '',
   jobTitle: '',
   email: '',
+  phoneCode: '+995',
   phone: '',
   location: '',
   linkedin: '',
