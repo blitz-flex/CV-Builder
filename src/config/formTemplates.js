@@ -1,8 +1,8 @@
 export const FORM_TEMPLATES = {
   workExperience: { period: '', title: '', company: '', description: '' },
-  education: { degree: '', period: '' },
+  education: { degree: '', school: '', period: '' },
   training: { title: '', period: '', description: '' },
-  languages: { name: '' },
+  languages: { name: '', level: '' },
   skills: { name: '' },
   programs: { name: '' },
   projects: { title: '', description: '', link: '' }
@@ -10,16 +10,18 @@ export const FORM_TEMPLATES = {
 
 export const INITIAL_FORM_DATA = {
   fullName: '',
+  jobTitle: '',
   email: '',
   phone: '',
+  location: '',
   linkedin: '',
   github: '',
   profile: '',
   photo: null,
   workExperience: [{ period: '', title: '', company: '', description: '' }],
-  education: [{ degree: '', period: '' }],
+  education: [{ degree: '', school: '', period: '' }],
   training: [{ title: '', period: '', description: '' }],
-  languages: [{ name: '' }],
+  languages: [{ name: '', level: '' }],
   skills: [{ name: '' }],
   programs: [{ name: '' }],
   projects: [{ title: '', description: '', link: '' }]

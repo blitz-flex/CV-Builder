@@ -11,8 +11,9 @@ function Education({ data, collapsed, onToggle, onChange, onAdd, onRemove }) {
         <>
           {data.map((item, index) => (
             <div key={index} className="array-item">
-              <input value={item.degree} onChange={(e) => onChange(index, 'degree', e.target.value)} placeholder="Degree" />
-              <input value={item.period} onChange={(e) => onChange(index, 'period', e.target.value)} placeholder="Period" />
+              <input value={item.degree} onChange={(e) => onChange(index, 'degree', e.target.value)} placeholder="Degree (e.g. High School Diploma)" />
+              <input value={item.school} onChange={(e) => onChange(index, 'school', e.target.value)} placeholder="School Name" />
+              <input value={item.period} onChange={(e) => onChange(index, 'period', e.target.value)} placeholder="Period (e.g. 2011 - 2015)" />
               {data.length > 1 && (
                 <button type="button" className="remove-btn" onClick={() => onRemove(index)}>
                   <Trash2 size={16} />

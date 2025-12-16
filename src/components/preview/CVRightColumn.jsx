@@ -1,40 +1,49 @@
-import { User, Briefcase, GraduationCap, BookOpen, FolderGit2 } from 'lucide-react'
-
 function CVRightColumn({ formData, accentColor }) {
   return (
-    <div className="cv-right-column">
+    <div className="cv-left-column">
       {formData.profile && (
         <div className="cv-block">
-          <h3 style={{ color: accentColor }}><User size={16} /> Profile</h3>
-          <p>{formData.profile}</p>
+          <p className="profile-text">{formData.profile}</p>
         </div>
       )}
 
       {formData.workExperience.some(item => item.title || item.company) && (
         <div className="cv-block">
-          <h3 style={{ color: accentColor }}><Briefcase size={16} /> Work Experience</h3>
+          <h3>WORK EXPERIENCE</h3>
           {formData.workExperience.map((item, index) => (
             item.title || item.company ? (
               <div key={index} className="exp-item">
-                <p className="period">{item.period}</p>
-                <h4>{item.title}</h4>
-                <p className="company">{item.company}</p>
-                <p>{item.description}</p>
+                <div className="exp-bar" style={{ backgroundColor: accentColor }}></div>
+                <div className="exp-content">
+                  <h4>{item.title}</h4>
+                  <p className="company">{item.company}</p>
+                  <p className="period" style={{ color: accentColor }}>{item.period}</p>
+                  {item.description && (
+                    <ul className="exp-description">
+                      {item.description.split('\n').filter(line => line.trim()).map((line, i) => (
+                        <li key={i}>{line.trim()}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
             ) : null
           ))}
         </div>
       )}
 
-      {formData.training.some(item => item.title) && (
+      {formData.education.some(item => item.degree) && (
         <div className="cv-block">
-          <h3 style={{ color: accentColor }}><BookOpen size={16} /> Training & Certifications</h3>
-          {formData.training.map((item, index) => (
-            item.title ? (
-              <div key={index}>
-                <h4>{item.title}</h4>
-                <p className="period">{item.period}</p>
-                {item.description && <p>{item.description}</p>}
+          <h3>EDUCATION</h3>
+          {formData.education.map((item, index) => (
+            item.degree ? (
+              <div key={index} className="edu-item">
+                <div className="exp-bar" style={{ backgroundColor: accentColor }}></div>
+                <div className="edu-content">
+                  <h4>{item.degree}</h4>
+                  <p className="school">{item.school}</p>
+                  <p className="period" style={{ color: accentColor }}>{item.period}</p>
+                </div>
               </div>
             ) : null
           ))}
@@ -43,13 +52,13 @@ function CVRightColumn({ formData, accentColor }) {
 
       {formData.projects.some(item => item.title) && (
         <div className="cv-block">
-          <h3 style={{ color: accentColor}}><FolderGit2 size={16} /> Projects</h3>
+          <h3>PROJECTS</h3>
           {formData.projects.map((item, index) => (
             item.title ? (
-              <div key={index}>
+              <div key={index} className="project-item">
                 <h4>{item.title}</h4>
                 {item.description && <p>{item.description}</p>}
-                {item.link && <p><a href={item.link} target="_blank" rel="noopener noreferrer" className="link">Link</a></p>}
+                {item.link && <a href={item.link} target="_blank" rel="noopener noreferrer" className="project-link" style={{ color: accentColor }}>View Project</a>}
               </div>
             ) : null
           ))}

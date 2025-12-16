@@ -11,7 +11,8 @@ function Languages({ data, collapsed, onToggle, onChange, onAdd, onRemove }) {
         <>
           {data.map((item, index) => (
             <div key={index} className="array-item">
-              <input value={item.name} onChange={(e) => onChange(index, 'name', e.target.value)} placeholder="Language" />
+              <input value={item.name} onChange={(e) => onChange(index, 'name', e.target.value)} placeholder="Language (e.g. English)" />
+              <input value={item.level} onChange={(e) => onChange(index, 'level', e.target.value)} placeholder="Level (e.g. Native or Bilingual Proficiency)" />
               {data.length > 1 && (
                 <button type="button" className="remove-btn" onClick={() => onRemove(index)}>
                   <Trash2 size={16} />

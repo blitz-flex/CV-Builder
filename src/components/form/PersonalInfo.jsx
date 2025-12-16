@@ -10,14 +10,12 @@ function PersonalInfo({ formData, onChange, onPhotoUpload, collapsed, onToggle }
       {!collapsed && (
         <div style={{ marginTop: '1rem' }}>
           <input name="fullName" value={formData.fullName} onChange={onChange} placeholder="Full Name" />
+          <input name="jobTitle" value={formData.jobTitle} onChange={onChange} placeholder="Job Title (e.g. Professional Waiter)" />
           <input name="email" value={formData.email} onChange={onChange} placeholder="Email" />
           <input name="phone" value={formData.phone} onChange={onChange} placeholder="Phone" />
-          <input name="linkedin" value={formData.linkedin} onChange={onChange} placeholder="LinkedIn URL" />
-          <input name="github" value={formData.github} onChange={onChange} placeholder="GitHub URL" />
-          <div className="photo-upload">
-            <label htmlFor="photo">Upload Photo</label>
-            <input type="file" id="photo" accept="image/*" onChange={onPhotoUpload} />
-          </div>
+          <input name="location" value={formData.location} onChange={onChange} placeholder="Location (e.g. Nashville, TN)" />
+          <input name="linkedin" value={formData.linkedin} onChange={onChange} placeholder="LinkedIn (e.g. linkedin.com/in/username)" />
+          <input name="github" value={formData.github} onChange={onChange} placeholder="GitHub (e.g. github.com/username)" />
         </div>
       )}
     </div>
