@@ -64,7 +64,7 @@ function CVForm() {
         <div className="form-header">
           <h2>Create Your CV</h2>
           <button className="design-btn" onClick={() => setShowDesignModal(true)}>
-            <Palette size={20} /> Design
+            <Palette size={20} /> <span>Design</span>
           </button>
         </div>
 
