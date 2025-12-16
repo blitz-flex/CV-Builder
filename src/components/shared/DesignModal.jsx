@@ -38,75 +38,63 @@ function DesignModal({ show, onClose, accentColor, setAccentColor, selectedFont,
   return (
     <div className="modal-overlay-left" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h3><Palette size={24} /> Customize Design</h3>
-        </div>
         <div className="design-options">
-          <div className="option">
-            <label><Palette size={14} /> Theme Color</label>
-            <div className="color-picker-wrapper" ref={colorDropdownRef}>
-              <button 
-                className={`color-picker-button ${colorDropdownOpen ? 'open' : ''}`}
-                onClick={() => setColorDropdownOpen(!colorDropdownOpen)}
-              >
-                <div className="color-preview" style={{ background: accentColor }}></div>
-                <span>Select Color</span>
-                <ChevronDown size={18} />
-              </button>
-              {colorDropdownOpen && (
-                <div className="color-dropdown">
-                  <div className="color-presets">
-                    {COLOR_PRESETS.map(color => (
-                      <button
-                        key={color}
-                        className={`color-preset ${accentColor === color ? 'active' : ''}`}
-                        style={{ background: color }}
-                        onClick={() => setAccentColor(color)}
-                      />
-                    ))}
-                  </div>
-                  <div className="color-input-wrapper">
-                    <input 
-                      type="text" 
-                      value={accentColor} 
-                      onChange={(e) => {
-                        const value = e.target.value
-                        if (/^#[0-9A-Fa-f]{0,6}$/.test(value)) {
-                          setAccentColor(value)
-                        }
-                      }}
-                      placeholder="#000000"
-                      maxLength={7}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="option">
-            <label><Type size={14} /> Font Family</label>
-            <div className="font-picker-wrapper" ref={fontDropdownRef}>
-              <button 
-                className={`font-picker-button ${fontDropdownOpen ? 'open' : ''}`}
-                onClick={() => setFontDropdownOpen(!fontDropdownOpen)}
-              >
-                <span>{FONTS.find(f => f.value === selectedFont)?.label}</span>
-                <ChevronDown size={18} />
-              </button>
-              {fontDropdownOpen && (
-                <div className="font-dropdown">
-                  {FONTS.map(font => (
+          <div className="option" ref={colorDropdownRef}>
+            <button 
+              className={`icon-trigger ${colorDropdownOpen ? 'active' : ''}`}
+              onClick={() => setColorDropdownOpen(!colorDropdownOpen)}
+            >
+              <Palette size={22} />
+            </button>
+            {colorDropdownOpen && (
+              <div className="color-dropdown">
+                <div className="color-presets">
+                  {COLOR_PRESETS.map(color => (
                     <button
-                      key={font.value}
-                      className={`font-option ${selectedFont === font.value ? 'active' : ''}`}
-                      onClick={() => setSelectedFont(font.value)}
-                    >
-                      {font.label}
-                    </button>
+                      key={color}
+                      className={`color-preset ${accentColor === color ? 'active' : ''}`}
+                      style={{ background: color }}
+                      onClick={() => setAccentColor(color)}
+                    />
                   ))}
                 </div>
-              )}
-            </div>
+                <div className="color-input-wrapper">
+                  <input 
+                    type="text" 
+                    value={accentColor} 
+                    onChange={(e) => {
+                      const value = e.target.value
+                      if (/^#[0-9A-Fa-f]{0,6}$/.test(value)) {
+                        setAccentColor(value)
+                      }
+                    }}
+                    placeholder="#000000"
+                    maxLength={7}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="option" ref={fontDropdownRef}>
+            <button 
+              className={`icon-trigger ${fontDropdownOpen ? 'active' : ''}`}
+              onClick={() => setFontDropdownOpen(!fontDropdownOpen)}
+            >
+              <Type size={22} />
+            </button>
+            {fontDropdownOpen && (
+              <div className="font-dropdown">
+                {FONTS.map(font => (
+                  <button
+                    key={font.value}
+                    className={`font-option ${selectedFont === font.value ? 'active' : ''}`}
+                    onClick={() => setSelectedFont(font.value)}
+                  >
+                    {font.label}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
