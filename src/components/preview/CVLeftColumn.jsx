@@ -1,4 +1,4 @@
-import { User, Mail, Phone, Linkedin, Github, Languages as LanguagesIcon, Award } from 'lucide-react'
+import { User, Mail, Phone, Linkedin, Github, Languages as LanguagesIcon, Award, GraduationCap } from 'lucide-react'
 
 function CVLeftColumn({ formData, accentColor }) {
   return (
@@ -10,6 +10,20 @@ function CVLeftColumn({ formData, accentColor }) {
         {formData.linkedin && <p><Linkedin size={14} /> <a href={formData.linkedin} target="_blank" rel="noopener noreferrer" className="link">LinkedIn</a></p>}
         {formData.github && <p><Github size={14} /> <a href={formData.github} target="_blank" rel="noopener noreferrer" className="link">GitHub</a></p>}
       </div>
+
+      {formData.education.some(item => item.degree) && (
+        <div className="cv-block">
+          <h3 style={{ color: accentColor }}><GraduationCap size={16} /> Education</h3>
+          {formData.education.map((item, index) => (
+            item.degree ? (
+              <div key={index}>
+                <p>{item.degree}</p>
+                <p className="period">{item.period}</p>
+              </div>
+            ) : null
+          ))}
+        </div>
+      )}
 
       {formData.languages.some(item => item.name) && (
         <div className="cv-block">
