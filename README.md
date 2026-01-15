@@ -1,7 +1,6 @@
 # CV Builder
 
-
-##  Overview
+#  Overview
 
 CV Builder is a lightweight, intuitive web application that helps you create professional resumes in minutes. Built with React and Vite, it features a modern gradient UI, real-time preview, and one-click PDF export.
 
@@ -20,8 +19,8 @@ CV Builder is a lightweight, intuitive web application that helps you create pro
 
 ```bash
 # Clone repository
-git clone https://github.com/blitz-flex/CV-Build.git
-cd CV-Build
+git clone https://github.com/blitz-flex/CV-Builder.git
+cd CV-Builder
 
 # Install dependencies
 npm install
