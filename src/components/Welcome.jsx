@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FileText, ArrowRight, Sparkles, Download, Edit3 } from 'lucide-react'
+import { FileText, ArrowRight, CheckCircle2, Layout, Zap, ShieldCheck, FileDown } from 'lucide-react'
 import '../styles/Welcome.css'
 
 function Welcome() {
@@ -10,67 +10,110 @@ function Welcome() {
   useEffect(() => {
     const interval = setInterval(() => {
       setAnimKey(prev => prev + 1)
-    }, 4200)
+    }, 5000)
     return () => clearInterval(interval)
   }, [])
 
   return (
     <div className="welcome">
+      <div className="subtle-bg">
+        <div className="gradient-sphere"></div>
+        <div className="grid-subtle"></div>
+      </div>
+
       <div className="content">
         <div className="left">
           <div className="brand">
-            <FileText size={36} strokeWidth={2.5} />
+            <div className="brand-icon">
+              <FileText size={24} color="white" />
+            </div>
             <span>CV Builder</span>
           </div>
-          
-          <h1>Create Your Perfect CV in Seconds</h1>
-          
+
+          <h1><span className="highlight-text">Elevate</span> Your Professional Future</h1>
+
           <p className="intro">
-            Professional resume for your career success. 
-            Completely free, simple and fast.
+            Transform your past achievements into future opportunities. Build a
+            resume that tells a more powerful story of your success.
           </p>
 
-          <div className="highlights">
-            <div className="highlight">
-              <Sparkles size={20} />
-              <span>Professional</span>
+          <div className="small-features">
+            <div className="s-feature">
+              <Layout size={18} />
+              <span>Modern Layouts</span>
             </div>
-            <div className="highlight">
-              <Edit3 size={20} />
-              <span>Easy to use</span>
+            <div className="s-feature">
+              <ShieldCheck size={18} />
+              <span>ATS Friendly</span>
             </div>
-            <div className="highlight">
-              <Download size={20} />
+            <div className="s-feature">
+              <FileDown size={18} />
               <span>PDF Export</span>
             </div>
           </div>
 
-          <button className="start-btn" onClick={() => navigate('/create')}>
-            Get Started Free
-            <ArrowRight size={20} />
-          </button>
+          <div className="actions">
+            <button className="start-btn" onClick={() => navigate('/create')}>
+              Get Started Free
+              <ArrowRight size={20} />
+            </button>
+            <div className="trust">
+              <CheckCircle2 size={16} />
+              <span>No registration required</span>
+            </div>
+          </div>
         </div>
 
         <div className="right">
-          <div className="mockup">
-            <div className="paper">
-              <div className="paper-content" key={animKey}>
-                <div className="cv-section">
-                  <div className="cv-line header"></div>
-                  <div className="cv-line subheader"></div>
-                </div>
-                <div className="cv-section">
-                  <div className="cv-line small"></div>
-                  <div className="cv-line full"></div>
-                  <div className="cv-line full"></div>
-                  <div className="cv-line medium"></div>
-                </div>
-                <div className="cv-section">
-                  <div className="cv-line small"></div>
-                  <div className="cv-line full"></div>
-                  <div className="cv-line medium"></div>
+          <div className="mockup-view">
+            <div className="paper-wrapper">
+              <div className="paper-modern" key={animKey}>
+                <div className="p-layout">
+                  <div className="p-sidebar">
+                    <div className="p-avatar"></div>
+                    <div className="p-side-section">
+                      <div className="p-line p-side-title"></div>
+                      <div className="p-pills">
+                        <div className="p-pill"></div>
+                        <div className="p-pill"></div>
+                        <div className="p-pill"></div>
+                      </div>
+                    </div>
+                    <div className="p-side-section">
+                      <div className="p-line p-side-title"></div>
+                      <div className="p-line p-side-full"></div>
+                      <div className="p-line p-side-full"></div>
+                    </div>
+                  </div>
+
+                  <div className="p-main">
+                    <div className="p-header-top">
+                      <div className="p-line p-main-title"></div>
+                      <div className="p-line p-sub-title"></div>
+                    </div>
+
+                    <div className="p-body-content">
+                      <div className="p-section">
+                        <div className="p-line p-section-title"></div>
+                        <div className="p-line p-full-width"></div>
+                        <div className="p-line p-mid-width"></div>
+                      </div>
+
+                      <div className="p-section">
+                        <div className="p-line p-section-title"></div>
+                        <div className="p-line p-full-width"></div>
+                        <div className="p-line p-mid-width"></div>
+                      </div>
+
+                      <div className="p-section">
+                        <div className="p-line p-section-title"></div>
+                        <div className="p-line p-full-width"></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div className="paper-shadow"></div>
             </div>
           </div>
         </div>
