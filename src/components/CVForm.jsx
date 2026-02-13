@@ -62,7 +62,7 @@ function CVForm() {
     <div className="cv-builder">
       <div className="form-side">
         <div className="form-header">
-          <h2>Create Your CV</h2>
+          <h2>Create CV</h2>
           <button className="design-btn" onClick={() => setShowDesignModal(true)}>
             <Palette size={20} /> <span>Design</span>
           </button>
@@ -76,7 +76,7 @@ function CVForm() {
           selectedFont={selectedFont}
           setSelectedFont={setSelectedFont}
         />
-        
+
         <FormColumns
           formData={formData}
           collapsed={collapsed}
@@ -91,7 +91,7 @@ function CVForm() {
         <button className="download-btn" onClick={downloadPDF}>Download PDF</button>
       </div>
 
-      <CVPreview 
+      <CVPreview
         formData={formData}
         accentColor={accentColor}
         selectedFont={selectedFont}
