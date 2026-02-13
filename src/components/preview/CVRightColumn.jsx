@@ -1,6 +1,6 @@
 function CVRightColumn({ formData, accentColor }) {
   return (
-    <div className="cv-left-column">
+    <div className="cv-main-blocks">
       {formData.profile && (
         <div className="cv-block">
           <p className="profile-text">{formData.profile}</p>

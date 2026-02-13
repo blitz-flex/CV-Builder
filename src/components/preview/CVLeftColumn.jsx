@@ -1,6 +1,6 @@
 function CVLeftColumn({ formData, accentColor }) {
   return (
-    <div className="cv-right-column">
+    <div className="cv-side-blocks">
       {formData.skills.some(item => item.name) && (
         <div className="cv-block">
           <h3>SKILLS</h3>
