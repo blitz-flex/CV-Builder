@@ -1,1 +1,1 @@
-export const DEFAULT_ACCENT_COLOR = '#dc2626'
+export const DEFAULT_ACCENT_COLOR = '#2563eb'
