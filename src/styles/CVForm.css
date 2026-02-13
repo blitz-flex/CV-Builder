@@ -104,35 +104,54 @@
 
 /* Integrated Design Panel - Modern & Refined */
 .design-panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2.5rem;
+  /* Symmetry: space from top, bottom, and left is now 2.5rem */
+  animation: fadeIn 0.3s ease;
+  pointer-events: auto;
+}
+
+/* More refined blur localized to the left side */
+.design-panel-overlay::before {
+  content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
-  display: flex;
-  justify-content: flex-start;
-  padding: 1.5rem;
-  animation: fadeIn 0.3s ease;
+  width: 40%;
+  /* Slightly narrower for better balance */
+  background: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: -1;
+  mask-image: linear-gradient(to right, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 40%, transparent 100%);
 }
 
 .design-panel {
   background: white;
   width: 100%;
-  max-width: 320px;
-  height: fit-content;
-  border-radius: 20px;
+  max-width: 420px;
+  /* სიგანეში გაზრდილი */
+  max-height: 90vh;
+  border-radius: 32px;
+  /* ოდნავ მეტად მომრგვალებული */
   box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 30px 60px -12px rgba(0, 0, 0, 0.15),
     0 0 0 1px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  animation: panelSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: panelSlideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
-@keyframes panelSlide {
+@keyframes panelSlideInLeft {
   from {
-    transform: translateX(-20px);
+    transform: translateX(-40px);
     opacity: 0;
   }
 
@@ -143,125 +162,210 @@
 }
 
 .panel-header {
-  padding: 1.25rem 1.5rem;
+  padding: 1.5rem 2.5rem;
+  /* ვერტიკალური დაშორება შემცირდა */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #f1f5f9;
+  background: #ffffff;
+  border-bottom: 1px solid #f8fafc;
 }
 
 .panel-info {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .panel-info h3 {
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 800;
   color: #0f172a;
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
 .panel-info svg {
   color: #2563eb;
+  background: #eff6ff;
+  padding: 8px;
+  border-radius: 12px;
+  width: 36px;
+  height: 36px;
 }
 
 .panel-close {
-  background: transparent;
+  background: #f8fafc;
   border: none;
   cursor: pointer;
-  color: #94a3b8;
-  padding: 4px;
-  border-radius: 8px;
-  transition: all 0.2s;
+  color: #64748b;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .panel-close:hover {
-  background: #f1f5f9;
+  background: #fee2e2;
   color: #ef4444;
+  transform: rotate(90deg);
 }
 
 .panel-content {
-  padding: 1.5rem;
+  padding: 0.75rem 2.5rem 2.5rem 2.5rem;
+  /* ზედა დაშორება კიდევ უფრო შემცირდა */
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
+  overflow-y: auto;
+  /* სქროლი რომ ყველა შრიფტი გამოჩნდეს */
+  flex: 1;
+}
+
+/* Custom Scrollbar for a professional look */
+.panel-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.panel-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.panel-content::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+.panel-content::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
 }
 
 .design-group {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .design-group label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #94a3b8;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.design-group label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #f1f5f9;
 }
 
 .color-grid-minimal {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.75rem;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3x2 ბადე (5 ფერი + 1 პიპეტა) */
+  gap: 1.5rem;
+  justify-items: center;
 }
 
 .color-dot {
-  aspect-ratio: 1;
+  width: 53px;
+  /* კიდევ +10%-ით გაზრდილი */
+  height: 53px;
   border-radius: 50%;
-  border: 3px solid white;
+  border: 4px solid white;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0;
+  position: relative;
 }
 
 .color-dot:hover {
-  transform: scale(1.1);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .color-dot.active {
-  box-shadow: 0 0 0 2px white, 0 0 0 5px #cbd5e1;
-  transform: scale(1.1);
+  transform: scale(1.15);
+  box-shadow: 0 0 0 3px white, 0 0 0 6px #e2e8f0;
+}
+
+.custom-picker-wrapper {
+  position: relative;
+  background: conic-gradient(from 180deg at 50% 50%, #FF0000 0deg, #FFFF00 60deg, #00FF00 120deg, #00FFFF 180deg, #0000FF 240deg, #FF00FF 300deg, #FF0000 360deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.custom-color-input {
+  position: absolute;
+  inset: -5px;
+  width: 150%;
+  height: 150%;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.pipette-icon {
+  color: white;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  opacity: 0.9;
+}
+
+.custom-picker-wrapper.active {
+  background: var(--active-color);
+  /* This will be set by inline style if needed, but let's just use the active border */
 }
 
 .font-list-minimal {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.6rem;
 }
 
 .font-item-btn {
   background: #f8fafc;
-  border: 1px solid transparent;
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
+  border: 1.5px solid #f1f5f9;
+  padding: 0.85rem 1.25rem;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .font-item-btn:hover {
-  background: #f1f5f9;
+  background: white;
+  border-color: #e2e8f0;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 .font-item-btn.active {
   background: white;
   border-color: #2563eb;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.05);
+  border-width: 2px;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.08);
+  transform: translateX(4px);
 }
 
 .font-item-btn span {
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: #1e293b;
 }
 

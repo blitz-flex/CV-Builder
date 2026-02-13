@@ -1,9 +1,12 @@
 export const FONTS = [
-  { value: 'Arial', label: 'Arial' },
   { value: 'Helvetica', label: 'Helvetica' },
+  { value: 'Inter', label: 'Inter' },
   { value: 'Times New Roman', label: 'Times New Roman' },
-  { value: 'Calibri', label: 'Calibri' },
-  { value: 'Roboto', label: 'Roboto' }
+  { value: 'Roboto', label: 'Roboto' },
+  { value: 'Montserrat', label: 'Montserrat' },
+  { value: 'Open Sans', label: 'Open Sans' },
+  { value: 'Lato', label: 'Lato' },
+  { value: 'Poppins', label: 'Poppins' }
 ]
 
-export const DEFAULT_FONT = 'Arial'
+export const DEFAULT_FONT = 'Helvetica'

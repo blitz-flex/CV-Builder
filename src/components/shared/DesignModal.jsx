@@ -1,14 +1,15 @@
-import { X, Palette } from 'lucide-react'
+import { X, Palette, Pipette } from 'lucide-react'
 import { FONTS } from '../../config/fonts'
 
 const COLOR_PRESETS = [
-  '#dc2626', '#2563eb', '#16a34a', '#d97706',
-  '#7c3aed', '#db2777', '#0f172a', '#4b5563',
-  '#0d9488', '#22c55e', '#f97316', '#64748b'
+  '#2563eb', '#0f172a', '#16a34a', '#dc2626', '#7c3aed'
 ]
 
 function DesignModal({ show, onClose, accentColor, setAccentColor, selectedFont, setSelectedFont }) {
   if (!show) return null
+
+  // Check if current accentColor is one of the presets
+  const isCustomColor = !COLOR_PRESETS.includes(accentColor);
 
   return (
     <div className="design-panel-overlay" onClick={onClose}>
@@ -38,6 +39,20 @@ function DesignModal({ show, onClose, accentColor, setAccentColor, selectedFont,
                   onClick={() => setAccentColor(color)}
                 />
               ))}
+
+              {/* Custom Color Picker as 6th option */}
+              <div
+                className={`color-dot custom-picker-wrapper ${isCustomColor ? 'active' : ''}`}
+                style={isCustomColor ? { background: accentColor } : {}}
+              >
+                <input
+                  type="color"
+                  value={isCustomColor ? accentColor : '#ffffff'}
+                  onChange={(e) => setAccentColor(e.target.value)}
+                  className="custom-color-input"
+                />
+                {!isCustomColor && <Pipette size={21} className="pipette-icon" />}
+              </div>
             </div>
           </div>
 
@@ -58,11 +73,6 @@ function DesignModal({ show, onClose, accentColor, setAccentColor, selectedFont,
           </div>
         </div>
 
-        <div className="panel-footer">
-          <button className="done-btn" onClick={onClose} style={{ backgroundColor: accentColor }}>
-            Save Changes
-          </button>
-        </div>
       </div>
     </div>
   )
