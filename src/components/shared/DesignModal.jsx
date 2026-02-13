@@ -1,79 +1,67 @@
-import { useState, useEffect, useRef } from 'react'
-import { Palette, ChevronDown, Type } from 'lucide-react'
+import { X, Palette } from 'lucide-react'
 import { FONTS } from '../../config/fonts'
 
 const COLOR_PRESETS = [
-  '#22c55e', '#f97316', '#64748b',
-  '#84cc16', '#14b8a6', '#8b5cf6',
-  '#ec4899', '#000000'
+  '#dc2626', '#2563eb', '#16a34a', '#d97706',
+  '#7c3aed', '#db2777', '#0f172a', '#4b5563',
+  '#0d9488', '#22c55e', '#f97316', '#64748b'
 ]
 
 function DesignModal({ show, onClose, accentColor, setAccentColor, selectedFont, setSelectedFont }) {
-  const [colorDropdownOpen, setColorDropdownOpen] = useState(false)
-  const [fontDropdownOpen, setFontDropdownOpen] = useState(false)
-  const colorDropdownRef = useRef(null)
-  const fontDropdownRef = useRef(null)
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (colorDropdownRef.current && !colorDropdownRef.current.contains(event.target)) {
-        setColorDropdownOpen(false)
-      }
-      if (fontDropdownRef.current && !fontDropdownRef.current.contains(event.target)) {
-        setFontDropdownOpen(false)
-      }
-    }
-
-    if (colorDropdownOpen || fontDropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [colorDropdownOpen, fontDropdownOpen])
-
   if (!show) return null
 
   return (
-    <div className="modal-overlay-left" onClick={onClose}>
-      <div 
-        className="modal-content" 
+    <div className="design-panel-overlay" onClick={onClose}>
+      <div
+        className="design-panel"
         onClick={(e) => e.stopPropagation()}>
-        <div className="design-options">
-          <div className="option">
-            <div className="option-header">
-              <Palette size={20} />
-              <h4>Theme Color</h4>
-            </div>
-            <div className="color-presets">
+
+        <div className="panel-header">
+          <div className="panel-info">
+            <Palette size={18} />
+            <h3>Customize Design</h3>
+          </div>
+          <button className="panel-close" onClick={onClose}>
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="panel-content">
+          <div className="design-group">
+            <label>Accent Color</label>
+            <div className="color-grid-minimal">
               {COLOR_PRESETS.map(color => (
                 <button
                   key={color}
-                  className={`color-preset ${accentColor === color ? 'active' : ''}`}
-                  style={{ background: color }}
+                  className={`color-dot ${accentColor === color ? 'active' : ''}`}
+                  style={{ backgroundColor: color }}
                   onClick={() => setAccentColor(color)}
                 />
               ))}
             </div>
           </div>
-          <div className="option">
-            <div className="option-header">
-              <Type size={20} />
-              <h4>Font Family</h4>
-            </div>
-            <div className="font-dropdown">
+
+          <div className="design-group">
+            <label>Typography</label>
+            <div className="font-list-minimal">
               {FONTS.map(font => (
                 <button
                   key={font.value}
-                  className={`font-option ${selectedFont === font.value ? 'active' : ''}`}
+                  className={`font-item-btn ${selectedFont === font.value ? 'active' : ''}`}
+                  style={{ fontFamily: font.value }}
                   onClick={() => setSelectedFont(font.value)}
                 >
-                  {font.label}
+                  <span>{font.label}</span>
                 </button>
               ))}
             </div>
           </div>
+        </div>
+
+        <div className="panel-footer">
+          <button className="done-btn" onClick={onClose} style={{ backgroundColor: accentColor }}>
+            Save Changes
+          </button>
         </div>
       </div>
     </div>
