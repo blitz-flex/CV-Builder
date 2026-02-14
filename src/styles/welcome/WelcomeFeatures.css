@@ -1,0 +1,41 @@
+/* ===========================
+   Welcome Features — Small Info Blocks
+   =========================== */
+
+.small-features {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.s-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.s-feature svg {
+    color: var(--primary);
+    opacity: 0.8;
+}
+
+/* Responsive — Features */
+@media (max-width: 1024px) {
+    .small-features {
+        justify-content: center;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .small-features {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        width: fit-content;
+        text-align: left;
+    }
+}
