@@ -419,10 +419,10 @@
 }
 
 .form-section.collapsible {
-  background: #e0e7ff;
+  background: rgba(243, 246, 243, 0.19);
   padding: 1rem;
   border-radius: 8px;
-  border: 2px solid #c7d2fe;
+  border: 2px solid rgba(199, 210, 254, 0.8);
   margin-bottom: 1rem;
   overflow: hidden;
 }
