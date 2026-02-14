@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Welcome from './components/Welcome'
 import CVForm from './components/CVForm'
-import './styles/App.css'
 
 function App() {
   return (

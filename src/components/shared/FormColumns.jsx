@@ -8,21 +8,22 @@ import Skills from '../form/Skills'
 import Programs from '../form/Programs'
 import Projects from '../form/Projects'
 import FormSection from './FormSection'
+import '../../styles/FormSections.css'
 
 function FormColumns({ formData, collapsed, toggleSection, handleChange, handlePhotoUpload, handleArrayChange, addItem, removeItem }) {
   return (
     <div className="form-columns">
       <div className="form-column">
-        <PersonalInfo 
-          formData={formData} 
-          onChange={handleChange} 
+        <PersonalInfo
+          formData={formData}
+          onChange={handleChange}
           onPhotoUpload={handlePhotoUpload}
           collapsed={collapsed.personalInfo}
           onToggle={() => toggleSection('personalInfo')}
         />
 
-        <Profile 
-          value={formData.profile} 
+        <Profile
+          value={formData.profile}
           onChange={handleChange}
           collapsed={collapsed.profile}
           onToggle={() => toggleSection('profile')}
