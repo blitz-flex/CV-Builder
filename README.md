@@ -1,64 +1,67 @@
 # CV Builder
 
-#  Overview
+**A modern, privacy-focused resume builder developed with React.**
 
-CV Builder is a lightweight, intuitive web application that helps you create professional resumes in minutes. Built with React and Vite, it features a modern gradient UI, real-time preview, and one-click PDF export.
+CV Builder allows users to create professional-grade resumes effortlessly. It features a responsive editing interface, real-time preview, and high-quality PDF export—all without requiring user registration.
 
-## Key Features
+## Features
 
-- **Real-time Preview** - See changes instantly as you type
-- **PDF Export** - Download professional PDFs with one click
-- **Customizable Design** - Multiple color schemes and templates
-- **Responsive Layout** - Works on all devices
-- **No Registration** - Start building immediately
-- **Fast Performance** - Powered by Vite
+- **Real-time Preview:** Instantly see changes as you edit your information.
+- **One-click Export:** Generate print-ready PDF files immediately.
+- **Customizable Design:** Choose from curated color schemes and professional fonts.
+- **Privacy First:** No sign-up required. Your data lives in your browser session.
+- **Responsive Interface:** Full editing capabilities on desktop and mobile devices.
 
-##  Getting Started
+## Technology Stack
+
+- **Framework:** React 19
+- **Build Tool:** Vite
+- **Styling:** Modern CSS3 (Grid/Flexbox)
+- **Icons:** Lucide React
+- **PDF Generation:** html2pdf.js
+
+## Getting Started
+
+Follow these steps to set up the project locally.
+
+### Prerequisites
+- Node.js (v18+)
+- npm
 
 ### Installation
 
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/blitz-flex/CV-Builder.git
+   cd CV-Builder
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+The application will be available at `http://localhost:5173`.
+
+## Building for Production
+
+To create an optimized production build:
+
 ```bash
-# Clone repository
-git clone https://github.com/blitz-flex/CV-Builder.git
-cd CV-Builder
-
-# Install dependencies
-npm install
-
-# Start dev server
-npm run dev
-```
-
-Visit `http://localhost:5173` to see the app.
-
-## Build
-
-```bash
-# Production build
 npm run build
-
-# Preview production build
-npm run preview
 ```
 
-##  Tech Stack
+## Project Structure
 
-- **Frontend:** React 19, React Router
-- **Build Tool:** Vite
-- **Icons:** Lucide React
-- **PDF Generation:** html2pdf.js
-- **Styling:** CSS3 with modern gradients
+- `src/components/` - React components for the Form and Preview.
+- `src/styles/` - Modular CSS files organized by page (Editor/Welcome).
+- `src/utils/` - Helper functions for PDF generation.
 
+##  Live Site
 
-## Usage
-
-1. Click "Get Started Free."
-2. Fill in your information
-3. Customize design (optional)
-4. Preview in real-time
-5. Download as PDF
-
-
-## 🔗 Links
-
-- [Live Demo](https://cv-builds.netlify.app/)
+[ 📝 CV Bulder](https://cv-builds.netlify.app/)
