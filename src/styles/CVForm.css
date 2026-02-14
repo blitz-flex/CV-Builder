@@ -43,6 +43,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  /* Allows wrapping when there is no space */
+  gap: 1.5rem;
+  /* Minimum spacing before wrap */
   margin-bottom: 2.5rem;
   padding: 1.25rem 1.75rem;
   background: rgba(255, 255, 255, 0.6);
@@ -162,7 +166,7 @@
 
 .panel-header {
   padding: 1.5rem 2.5rem;
-  /* ვერტიკალური დაშორება შემცირდა */
+  /* Reduced vertical padding */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -260,7 +264,7 @@
 .color-grid-minimal {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* 3x2 ბადე (5 ფერი + 1 პიპეტა) */
+  /* 3x2 grid (5 colors + 1 pipette) */
   gap: 1.5rem;
   justify-items: center;
 }
@@ -1003,18 +1007,14 @@
   }
 
   .form-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    /* Centering when wrapped */
+    text-align: center;
   }
 
   .form-side h2 {
-    font-size: 1.35rem;
-  }
-
-  .design-btn {
-    width: 100%;
-    justify-content: center;
+    font-size: 1.5rem;
   }
 
   .form-section input,
