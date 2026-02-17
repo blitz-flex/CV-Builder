@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FileText, ArrowRight, CheckCircle2, Layout, Zap, ShieldCheck, FileDown } from 'lucide-react'
-import '../styles/Welcome.css'
+import '../styles/welcome/Welcome.css'
+import '../styles/welcome/HeroMockup.css'
+import '../styles/welcome/WelcomeFeatures.css'
 
 function Welcome() {
   const navigate = useNavigate()

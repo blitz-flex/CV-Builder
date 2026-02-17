@@ -1,7 +1,7 @@
 import CVHeader from './CVHeader'
 import CVLeftColumn from './CVLeftColumn'
 import CVRightColumn from './CVRightColumn'
-import '../../styles/CVPreview.css'
+import '../../styles/editor/CVPreview.css'
 
 function CVPreview({ formData, accentColor, selectedFont, cvRef }) {
   return (

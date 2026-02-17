@@ -1,6 +1,6 @@
 import { X, Palette, Pipette } from 'lucide-react'
 import { FONTS } from '../../config/fonts'
-import '../../styles/DesignModal.css'
+import '../../styles/editor/DesignModal.css'
 
 const COLOR_PRESETS = [
   '#2563eb', '#0f172a', '#16a34a', '#dc2626', '#7c3aed'

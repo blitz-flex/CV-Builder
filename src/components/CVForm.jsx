@@ -7,7 +7,7 @@ import { DEFAULT_FONT } from '../config/fonts'
 import { DEFAULT_ACCENT_COLOR } from '../config/colors'
 import { FORM_TEMPLATES, INITIAL_FORM_DATA, INITIAL_COLLAPSED_STATE } from '../config/formTemplates'
 import { generatePDF } from '../utils/pdfGenerator'
-import '../styles/CVForm.css'
+import '../styles/editor/CVForm.css'
 
 function CVForm() {
   const cvRef = useRef()

@@ -8,7 +8,7 @@ import Skills from '../form/Skills'
 import Programs from '../form/Programs'
 import Projects from '../form/Projects'
 import FormSection from './FormSection'
-import '../../styles/FormSections.css'
+import '../../styles/editor/FormSections.css'
 
 function FormColumns({ formData, collapsed, toggleSection, handleChange, handlePhotoUpload, handleArrayChange, addItem, removeItem }) {
   return (
