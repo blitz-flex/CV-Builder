@@ -32,23 +32,6 @@ function CVRightColumn({ formData, accentColor }) {
         </div>
       )}
 
-      {formData.education.some(item => item.degree) && (
-        <div className="cv-block">
-          <h3>EDUCATION</h3>
-          {formData.education.map((item, index) => (
-            item.degree ? (
-              <div key={index} className="edu-item">
-                <div className="exp-bar" style={{ backgroundColor: accentColor }}></div>
-                <div className="edu-content">
-                  <h4>{item.degree}</h4>
-                  <p className="school">{item.school}</p>
-                  <p className="period" style={{ color: accentColor }}>{item.period}</p>
-                </div>
-              </div>
-            ) : null
-          ))}
-        </div>
-      )}
 
       {formData.projects.some(item => item.title) && (
         <div className="cv-block">

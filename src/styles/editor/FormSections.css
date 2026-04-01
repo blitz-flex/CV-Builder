@@ -3,20 +3,20 @@
     padding: 1.5rem;
     border-radius: 16px;
     border: 1px solid #e2e8f0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem; /* Standardized uniform margin for even gaps */
     overflow: hidden;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
     transition: all 0.3s ease;
 }
 
 .form-section.collapsible {
-    background: #f1f5ff;
-    padding: 1.5rem;
+    background: #f8faff;
+    padding: 1.25rem 1.5rem;
     border-radius: 16px;
     border: 1px solid #dbeafe;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem; /* Matching uniform margin */
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.03);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.02);
 }
 
 .form-section.collapsible:hover {
@@ -37,10 +37,11 @@
 }
 
 .form-section h3 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: #0f172a;
     margin-bottom: 0;
+    letter-spacing: -0.01em;
 }
 
 .form-section input,
@@ -50,7 +51,7 @@
     border: 1.5px solid #f1f5f9;
     border-radius: 12px;
     font-size: 0.95rem;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
     box-sizing: border-box;
     transition: all 0.2s;
     background: #f8fafc;
@@ -72,63 +73,9 @@
     line-height: 1.6;
 }
 
-.photo-upload {
-    margin-top: 0.5rem;
-}
-
-.photo-upload label {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 0.5rem;
-}
-
-.photo-upload input[type="file"] {
-    padding: 0.5rem;
-    border: 1px dashed #d1d5db;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.photo-upload input[type="file"]::-webkit-file-upload-button {
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.download-btn {
-    width: 100%;
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 1.15rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-    border-radius: 16px;
-    cursor: pointer;
-    margin-top: 2rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-}
-
-.download-btn:hover {
-    background: #1d4ed8;
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35);
-}
-
 .array-item {
     position: relative;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     margin-top: 1rem;
     padding: 1.25rem;
     background: #ffffff;
@@ -144,8 +91,8 @@
     background: #f8fafc;
     color: #2563eb;
     border: 1.5px dashed #cbd5e1;
-    padding: 1rem;
-    font-size: 0.95rem;
+    padding: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 700;
     border-radius: 12px;
     cursor: pointer;
@@ -176,31 +123,9 @@
     transition: all 0.2s;
 }
 
-.remove-btn:hover {
-    background: #ef4444;
-    color: white;
-    transform: scale(1.1);
-}
-
 @media (max-width: 640px) {
-
     .form-section input,
     .form-section textarea {
         font-size: 16px;
-    }
-
-    .download-btn {
-        position: sticky;
-        bottom: 0;
-        z-index: 10;
-        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .array-item {
-        padding: 0.75rem;
-    }
-
-    .add-btn {
-        font-size: 0.85rem;
     }
 }

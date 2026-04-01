@@ -1,121 +1,71 @@
-import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FileText, ArrowRight, CheckCircle2, Layout, Zap, ShieldCheck, FileDown } from 'lucide-react'
+import { Feather } from 'lucide-react'
 import '../styles/welcome/Welcome.css'
 import '../styles/welcome/HeroMockup.css'
-import '../styles/welcome/WelcomeFeatures.css'
 
 function Welcome() {
   const navigate = useNavigate()
-  const [animKey, setAnimKey] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimKey(prev => prev + 1)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
 
   return (
-    <div className="welcome">
-      <div className="subtle-bg">
-        <div className="gradient-sphere"></div>
-        <div className="grid-subtle"></div>
+    <div className="welcome vintage-theme">
+      <div className="vintage-bg">
+        <div className="texture-overlay"></div>
+        <div className="vignette"></div>
       </div>
 
       <div className="content">
         <div className="left">
-          <div className="brand">
-            <div className="brand-icon">
-              <FileText size={24} color="white" />
+          <div className="parchment-brand">
+            <div className="vintage-icon-wrapper">
+              <div className="feather-bg"></div>
+              <Feather size={20} color="#3e2723" />
             </div>
             <span>CV Builder</span>
           </div>
 
-          <h1><span className="highlight-text">Elevate</span> Your Professional Future</h1>
+          <h1 className="cinzel-title">Create Your <span className="script-accent">Perfect</span> CV in Seconds</h1>
 
-          <p className="intro">
-            Transform your past achievements into future opportunities. Build a
-            resume that tells a more powerful story of your success.
+          <p className="intro antique-font">
+            Create professional resumes that command attention.
+            Transform your experience into an elegant story of success
+            using our timeless designs.
           </p>
 
-          <div className="small-features">
-            <div className="s-feature">
-              <Layout size={18} />
-              <span>Modern Layouts</span>
-            </div>
-            <div className="s-feature">
-              <ShieldCheck size={18} />
-              <span>ATS Friendly</span>
-            </div>
-            <div className="s-feature">
-              <FileDown size={18} />
-              <span>PDF Export</span>
-            </div>
-          </div>
-
           <div className="actions">
-            <button className="start-btn" onClick={() => navigate('/create')}>
-              Get Started Free
-              <ArrowRight size={20} />
-            </button>
-            <div className="trust">
-              <CheckCircle2 size={16} />
-              <span>No registration required</span>
+            <div className="button-frame">
+              <button className="gold-btn" onClick={() => navigate('/create')}>
+                Get Started Free
+              </button>
             </div>
           </div>
         </div>
 
         <div className="right">
-          <div className="mockup-view">
-            <div className="paper-wrapper">
-              <div className="paper-modern" key={animKey}>
-                <div className="p-layout">
-                  <div className="p-sidebar">
-                    <div className="p-avatar"></div>
-                    <div className="p-side-section">
-                      <div className="p-line p-side-title"></div>
-                      <div className="p-pills">
-                        <div className="p-pill"></div>
-                        <div className="p-pill"></div>
-                        <div className="p-pill"></div>
-                      </div>
+          <div className="book-view">
+            <div className="s-scroll-container">
+              <div className="s-scroll-top"></div>
+              <div className="s-scroll-paper">
+                <div className="squiggly-lines">
+                  {[...Array(8)].map((_, i) => (
+                    <div key={i} className={`squiggly-line-wrapper line-${i}`}>
+                      <svg viewBox="0 0 200 12" preserveAspectRatio="none">
+                        <path d="M 0 6 Q 5 0 10 6 T 20 6 T 30 6 T 40 6 T 50 6 T 60 6 T 70 6 T 80 6 T 90 6 T 100 6 T 110 6 T 120 6 T 130 6 T 140 6 T 150 6 T 160 6 T 170 6 T 180 6 T 190 6 T 200 6" pathLength="100" />
+                      </svg>
                     </div>
-                    <div className="p-side-section">
-                      <div className="p-line p-side-title"></div>
-                      <div className="p-line p-side-full"></div>
-                      <div className="p-line p-side-full"></div>
-                    </div>
-                  </div>
-
-                  <div className="p-main">
-                    <div className="p-header-top">
-                      <div className="p-line p-main-title"></div>
-                      <div className="p-line p-sub-title"></div>
-                    </div>
-
-                    <div className="p-body-content">
-                      <div className="p-section">
-                        <div className="p-line p-section-title"></div>
-                        <div className="p-line p-full-width"></div>
-                        <div className="p-line p-mid-width"></div>
-                      </div>
-
-                      <div className="p-section">
-                        <div className="p-line p-section-title"></div>
-                        <div className="p-line p-full-width"></div>
-                        <div className="p-line p-mid-width"></div>
-                      </div>
-
-                      <div className="p-section">
-                        <div className="p-line p-section-title"></div>
-                        <div className="p-line p-full-width"></div>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
-              <div className="paper-shadow"></div>
+              <div className="s-scroll-bottom"></div>
+
+              <div className="pen-container-s">
+                <div className="modern-pen">
+                  <div className="pen-body">
+                    <div className="pen-clip"></div>
+                  </div>
+                  <div className="pen-nib"></div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

@@ -1,59 +1,50 @@
 .preview-side {
-    background-color: #f8fafc;
-    background-image:
-        radial-gradient(at 0% 0%, rgba(139, 156, 252, 0.15) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(180, 159, 253, 0.15) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(139, 156, 252, 0.15) 0px, transparent 50%),
-        radial-gradient(at 0% 100%, rgba(180, 159, 253, 0.15) 0px, transparent 50%);
+    background: radial-gradient(circle at center, #2e2f6a 0%, #151636 100%);
+    position: relative;
     padding: 3rem;
     overflow-y: auto;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    position: relative;
     scrollbar-width: none;
-}
-
-.preview-side::-webkit-scrollbar {
-    display: none;
+    box-shadow: inset 10px 0 30px rgba(0,0,0,0.4);
 }
 
 .preview-side::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px);
-    background-size: 30px 30px;
-    opacity: 0.2;
+    background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png');
+    opacity: 0.3;
     pointer-events: none;
+    z-index: 0;
+}
+
+.preview-side::-webkit-scrollbar {
+    display: none;
 }
 
 .cv-preview {
     width: 210mm;
     min-height: 297mm;
-    background: white;
-    box-shadow:
-        0 10px 25px -5px rgba(0, 0, 0, 0.05),
-        0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 25px 50px -12px rgba(0, 0, 0, 0.15);
     position: relative;
     z-index: 1;
     border-radius: 4px;
-    /* More document-like */
     overflow: hidden;
     display: flex;
     margin-bottom: 3rem;
-}
-
-.accent-bar {
-    width: 8px;
-    min-height: 100%;
-    flex-shrink: 0;
+    color: #1a1a1a;
+    font-family: 'Spectral', serif;
+    border: none;
+    box-sizing: border-box;
 }
 
 .cv-inner {
     flex: 1;
-    padding: 3.5rem 4rem;
+    padding: 2rem 4rem 3.5rem 4rem; /* Reduced top padding from 3.5rem to 2rem */
     display: flex;
     flex-direction: column;
 }
@@ -72,13 +63,14 @@
 }
 
 .cv-side-col {
-    background: #fbfcfd;
+    background: #fbfcfd; /* Clean professional side background */
     margin: -1rem;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    border: 1px solid #f1f5f9;
 }
 
 .accent-line {
@@ -89,24 +81,20 @@
 
 .cv-inner::after {
     content: '';
-    display: block;
-    height: 297mm;
-    margin-top: -297mm;
-    padding-top: 2rem;
-    position: relative;
-    z-index: -1;
+    display: none; /* Removed pseudo element that might create lines */
 }
 
 .cv-header {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem; /* Reduced from 3rem */
     padding-bottom: 2rem;
     border-bottom: 2px solid #f1f5f9;
 }
 
 .h-main h1 {
+    font-family: 'Cinzel', serif;
     font-size: 3rem;
     font-weight: 800;
     color: #0f172a;
@@ -117,18 +105,20 @@
 
 .h-divider {
     width: 60px;
-    height: 6px;
+    height: 4px;
     margin: 1.25rem 0;
-    border-radius: 3px;
+    border-radius: 2px;
+    background: #8d6e63; /* Default, will be overridden by inline styles */
 }
 
 .h-main .job-title {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #64748b;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #5d4037;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
+    font-style: italic;
 }
 
 .h-contact {
@@ -141,8 +131,8 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.875rem;
-    color: #475569;
+    font-size: 0.9rem;
+    color: #3e2723;
     font-weight: 500;
 }
 
@@ -153,7 +143,7 @@
 }
 
 .contact-item svg {
-    color: #94a3b8;
+    color: #8d6e63;
 }
 
 .cv-side-blocks,
@@ -163,26 +153,28 @@
 }
 
 .profile-text {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.6;
-    color: #374151;
+    color: #3e2723;
     margin: 0;
     text-align: justify;
 }
 
 .cv-block {
     margin-bottom: 0.75rem;
+    page-break-inside: avoid; /* Don't split block across pages */
 }
 
 .cv-block h3 {
-    font-size: 0.85rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #2e1a14;
     margin: 0 0 1.25rem 0;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #f1f5f9;
+    border-bottom: 2px solid rgba(62, 39, 35, 0.1);
 }
 
 .skills-grid {
@@ -193,12 +185,12 @@
 
 .skill-badge {
     padding: 0.35rem 0.85rem;
-    border-radius: 6px;
-    font-size: 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
     font-weight: 600;
     display: inline-block;
-    background: #f1f5f9 !important;
-    color: #475569 !important;
+    background: #f1f5f9; /* Professional light gray */
+    color: #334155;
     border: 1px solid #e2e8f0;
 }
 
@@ -212,12 +204,13 @@
 .lang-name {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #2e1a14;
 }
 
 .lang-level {
     font-size: 0.85rem;
     font-style: italic;
+    color: #3e2723;
 }
 
 .training-item {
@@ -227,13 +220,13 @@
 .training-item h4 {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #2e1a14;
     margin: 0 0 0.25rem 0;
 }
 
 .training-item .description {
     font-size: 0.85rem;
-    color: #374151;
+    color: #3e2723;
     line-height: 1.5;
     margin: 0.5rem 0 0 0;
 }
@@ -245,13 +238,13 @@
 .project-item h4 {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #2e1a14;
     margin: 0 0 0.25rem 0;
 }
 
 .project-item p {
     font-size: 0.85rem;
-    color: #374151;
+    color: #3e2723;
     line-height: 1.5;
     margin: 0.25rem 0;
 }
@@ -259,14 +252,15 @@
 .project-link {
     font-size: 0.85rem;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
+    color: #5d4037;
 }
 
 .exp-item {
     margin-bottom: 1.5rem;
     display: flex;
-    gap: 0.75rem;
-    page-break-inside: avoid;
+    gap: 1rem;
+    page-break-inside: avoid; /* Prevent splitting individual experience items */
 }
 
 .exp-bar {
@@ -274,7 +268,8 @@
     min-height: 100%;
     flex-shrink: 0;
     margin-top: 0.5rem;
-    opacity: 0.3;
+    background: #8d6e63;
+    opacity: 0.5;
 }
 
 .exp-content {
@@ -282,27 +277,28 @@
 }
 
 .exp-item h4 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    color: #0f172a;
+    color: #2e1a14;
     margin: 0 0 0.35rem 0;
 }
 
 .exp-item .company {
-    font-weight: 400;
-    color: #374151;
+    font-weight: 600;
+    color: #3e2723;
     margin: 0 0 0.25rem 0;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 .period {
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
     margin: 0 0 0.75rem 0;
     display: inline-block;
     padding: 0.2rem 0.6rem;
-    background: #f8fafc;
-    border-radius: 4px;
+    background: rgba(141, 110, 99, 0.1);
+    color: #5d4037;
+    border-radius: 2px;
 }
 
 .exp-description {
@@ -312,72 +308,78 @@
 }
 
 .exp-description li {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    color: #374151;
-    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #3e2723;
+    margin-bottom: 0.3rem;
 }
 
 .edu-item {
     margin-bottom: 1.25rem;
     display: flex;
     gap: 0.75rem;
+    page-break-inside: avoid; /* Prevent splitting education items */
 }
 
 .edu-content h4 {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #2e1a14;
     margin: 0 0 0.25rem 0;
 }
 
 .edu-content .school {
-    font-size: 0.9rem;
-    color: #374151;
+    font-size: 0.95rem;
+    color: #3e2723;
     margin: 0 0 0.25rem 0;
 }
 
 .edu-content .period {
     font-size: 0.85rem;
     font-style: italic;
+    color: #5d4037;
     margin: 0;
 }
 
 @media print {
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
     body {
-        background: white;
+        background: none;
+        margin: 0;
+        padding: 0;
     }
 
     .preview-side {
         padding: 0;
-        background: white;
+        background: none;
         height: auto;
+        display: block;
+        box-shadow: none;
+        margin: 0;
     }
 
     .cv-preview {
         box-shadow: none;
-        margin: 0;
+        margin: 0 auto;
         border-radius: 0;
-        width: 100%;
+        width: 210mm;
+        min-height: 297mm;
+        border: none;
+        background: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 
     .cv-inner {
-        padding: 0;
-        orphans: 3;
-        widows: 3;
+        padding: 10mm;
     }
 
-    .cv-inner>*:first-child {
-        padding-top: 0;
-    }
-
-    .cv-block {
-        page-break-inside: avoid;
-        orphans: 3;
-        widows: 3;
-    }
-
-    .cv-block h3 {
-        page-break-after: avoid;
+    .cv-side-col {
+        background: rgba(255, 255, 255, 0.1) !important;
+        -webkit-print-color-adjust: exact;
     }
 }

@@ -7,6 +7,7 @@ function CVPreview({ formData, accentColor, selectedFont, cvRef }) {
   return (
     <div className="preview-side">
       <div className="cv-preview" ref={cvRef} style={{ fontFamily: selectedFont }}>
+        <div className="accent-bar" style={{ backgroundColor: accentColor }}></div>
         <div className="cv-inner">
           <CVHeader formData={formData} accentColor={accentColor} />
           <div className="cv-layout">
@@ -18,7 +19,6 @@ function CVPreview({ formData, accentColor, selectedFont, cvRef }) {
             </div>
           </div>
         </div>
-        <div className="accent-line" style={{ backgroundColor: accentColor }}></div>
       </div>
     </div>
   )
