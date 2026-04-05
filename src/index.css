@@ -24,10 +24,11 @@
 
 body {
   font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
-  background-color: var(--background);
+  background-color: #151631; /* Global dark default to prevent white leaks */
   color: var(--text-main);
   line-height: 1.5;
   overflow-x: hidden;
+  min-width: 0;
 }
 
 #root {

@@ -3,9 +3,9 @@ import CVLeftColumn from './CVLeftColumn'
 import CVRightColumn from './CVRightColumn'
 import '../../styles/editor/CVPreview.css'
 
-function CVPreview({ formData, accentColor, selectedFont, cvRef }) {
+function CVPreview({ formData, accentColor, selectedFont, cvRef, isModal }) {
   return (
-    <div className="preview-side">
+    <div className={`preview-side ${isModal ? 'modal-mode' : 'inline-mode'}`}>
       <div className="cv-preview" ref={cvRef} style={{ fontFamily: selectedFont }}>
         <div className="accent-bar" style={{ backgroundColor: accentColor }}></div>
         <div className="cv-inner">

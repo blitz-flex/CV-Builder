@@ -147,31 +147,66 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
+    .welcome.vintage-theme {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+        padding: 4rem 2rem;
+    }
+
     .content {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         text-align: center;
         gap: 2rem;
+        padding-top: 2rem;
+        padding-bottom: 4rem;
     }
 
-    .left {
-        align-items: center;
+    .left, .right {
+        display: contents; /* Flattens containers so items can be logically ordered */
     }
 
-    .antique-font {
+    .parchment-brand {
+        order: 1;
+        justify-content: center;
+    }
+
+    .cinzel-title {
+        order: 2;
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+
+    .book-view {
+        order: 3;
+        margin: 0;
+        padding: 0;
+    }
+
+    .intro {
+        order: 4;
         margin: 0 auto;
     }
 
-    .right {
-        display: none;
+    .actions {
+        order: 5;
     }
 }
 
 @media (max-width: 640px) {
+    .welcome.vintage-theme {
+        padding: 2rem 1.25rem;
+    }
+
     .cinzel-title {
-        font-size: 2.2rem;
+        font-size: clamp(1.8rem, 9vw, 2.8rem);
     }
 
     .antique-font {
-        font-size: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .content {
+        gap: 1.5rem;
     }
 }
