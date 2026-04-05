@@ -162,8 +162,8 @@
     stroke-width: 3;
     fill: none;
     stroke-linecap: round;
-    stroke-dasharray: 100;
-    /* Maps directly to pathLength="100" */
+    stroke-dasharray: 100 9999;
+    /* Large gap prevents second dash segment from appearing as a dot */
     stroke-dashoffset: 100;
 }
 
