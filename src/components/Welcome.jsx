@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-import { Feather } from 'lucide-react'
 import '../styles/welcome/Welcome.css'
 import '../styles/welcome/HeroMockup.css'
 
@@ -10,27 +9,16 @@ function Welcome() {
     <div className="welcome vintage-theme">
       <div className="vintage-bg">
         <div className="texture-overlay"></div>
-        <div className="vignette"></div>
       </div>
 
       <div className="content">
         <div className="left">
-          <div className="parchment-brand">
-            <div className="vintage-icon-wrapper">
-              <div className="feather-bg"></div>
-              <Feather size={20} color="#3e2723" />
-            </div>
-            <span>CV Builder</span>
-          </div>
-
           <h1 className="cinzel-title">Create Your <span className="script-accent">Perfect</span> CV in Seconds</h1>
-
           <p className="intro antique-font">
             Create professional resumes that command attention.
             Transform your experience into an elegant story of success
             using our timeless designs.
           </p>
-
           <div className="actions">
             <div className="button-frame">
               <button className="gold-btn" onClick={() => navigate('/create')}>
@@ -54,9 +42,19 @@ function Welcome() {
                     </div>
                   ))}
                 </div>
+                <div className="reviewer-feedback-container">
+                  <div className="feedback-suggestion suggestion-1">
+                    <span className="typewriter-text">Highlight key metrics here</span>
+                  </div>
+                  <div className="feedback-suggestion suggestion-2">
+                    <span className="typewriter-text">Stronger action verb required</span>
+                  </div>
+                  <div className="feedback-suggestion suggestion-3">
+                    <span className="typewriter-text">Perfect professional summary!</span>
+                  </div>
+                </div>
               </div>
               <div className="s-scroll-bottom"></div>
-
               <div className="pen-container-s">
                 <div className="modern-pen">
                   <div className="pen-body">
@@ -65,7 +63,6 @@ function Welcome() {
                   <div className="pen-nib"></div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
