@@ -1,0 +1,227 @@
+/* ===========================
+   Editor Controls — header, toolbar buttons, footer, download button
+   =========================== */
+
+/* ── Header ── */
+.form-header {
+    flex-shrink: 0;
+    padding-block-end: var(--space-4);
+    padding-block-start: max(var(--space-4), calc(var(--safe-top) + var(--space-3)));
+    padding-inline: var(--form-inset-left) var(--form-inset-right);
+    background: linear-gradient(to right, rgba(227, 210, 170, 0.1), rgba(227, 210, 170, 0.03));
+    border-block-end: 1px solid var(--border-gold-22);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: var(--z-base);
+}
+
+/* Accent stripe across the top */
+.form-header::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    height: 3px;
+    background: linear-gradient(
+        to right,
+        var(--editor-accent, var(--color-gold-base)),
+        color-mix(in srgb, var(--editor-accent, var(--color-gold-base)) 60%, var(--color-gold-light))
+    );
+}
+
+.form-header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-3);
+}
+
+.form-header-title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+}
+
+.form-side h2 {
+    font-family: 'Cinzel', serif;
+    font-size: var(--text-fluid-xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-shadow: var(--shadow-sm);
+}
+
+.template-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: 'Spectral', serif;
+    font-size: var(--text-fluid-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.template-badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--editor-accent, var(--color-gold-base));
+    flex-shrink: 0;
+    box-shadow: 0 0 6px color-mix(in srgb, var(--editor-accent, var(--color-gold-base)) 50%, transparent);
+}
+
+/* ── Toolbar ── */
+.form-toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
+}
+
+.toolbar-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 34px;
+    padding-inline: var(--space-3);
+    background: rgba(21, 22, 54, 0.85);
+    color: var(--color-gold-pale);
+    border: 1px solid var(--border-gold-35);
+    border-radius: var(--radius-md);
+    font-family: 'Cinzel', serif;
+    font-size: var(--text-fluid-sm);
+    font-weight: 700;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    white-space: nowrap;
+    box-shadow: var(--shadow-sm);
+}
+
+.toolbar-btn:hover {
+    background: var(--color-bg-tertiary);
+    border-color: var(--color-gold-base);
+}
+
+.toolbar-btn:active {
+    transform: scale(0.97);
+}
+
+.toolbar-btn--muted {
+    color: var(--color-text-muted);
+    border-color: rgba(148, 163, 184, 0.25);
+}
+
+.toolbar-btn--muted:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: var(--color-error-light);
+}
+
+/* ── Footer ── */
+.form-footer {
+    flex-shrink: 0;
+    padding-block: var(--space-3);
+    padding-inline: var(--form-inset-left) var(--form-inset-right);
+    padding-block-end: max(var(--space-3), var(--safe-bottom));
+    background: var(--color-bg-overlay);
+    border-block-start: 1px solid var(--border-gold-20);
+    position: relative;
+    z-index: var(--z-base);
+}
+
+.download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    min-height: var(--touch-min);
+    padding-block: var(--space-3);
+    padding-inline: var(--space-4);
+    background: linear-gradient(135deg, var(--color-gold-base), var(--color-gold-dark));
+    color: var(--color-bg-primary);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: var(--text-fluid-md);
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    box-shadow: var(--shadow-xl);
+}
+
+.download-btn:hover {
+    box-shadow: 0 10px 28px rgba(212, 175, 55, 0.25);
+    background: linear-gradient(135deg, var(--color-text-primary), var(--color-gold-base));
+}
+
+.download-btn:active {
+    transform: scale(0.98);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1280px) {
+    .toolbar-btn span {
+        display: none;
+    }
+
+    .toolbar-btn {
+        width: 34px;
+        padding-inline: 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    .toolbar-btn {
+        min-width: var(--touch-min);
+        min-height: var(--touch-min);
+        width: var(--touch-min);
+        height: auto;
+    }
+
+    .toolbar-btn--labeled {
+        width: auto;
+        min-width: var(--touch-min);
+        padding-inline: var(--space-3);
+    }
+
+    .toolbar-btn--labeled span {
+        display: inline;
+    }
+
+    .toolbar-btn--preview {
+        background: var(--bg-gold-12);
+        border-color: var(--border-gold-50);
+        color: var(--color-gold-light);
+    }
+
+    .form-footer {
+        display: none;
+    }
+
+    .form-header {
+        padding-block-start: max(var(--space-6), calc(var(--safe-top) + var(--space-5)));
+    }
+}
+
+@media (max-width: 640px) {
+    .form-header {
+        padding-block-start: max(var(--space-6), calc(var(--safe-top) + var(--space-4)));
+    }
+
+    .form-header-top {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-toolbar {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+}

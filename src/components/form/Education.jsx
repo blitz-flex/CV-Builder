@@ -1,32 +1,26 @@
-import { ChevronDown, ChevronUp, Plus, Trash2 } from 'lucide-react'
+import { Trash2 } from 'lucide-react'
+import ArrayListForm from '../shared/ArrayListForm'
 
-function Education({ data, collapsed, onToggle, onChange, onAdd, onRemove }) {
+function Education({ data, onChange, onAdd, onRemove }) {
   return (
-    <div className="form-section collapsible">
-      <div className="section-header" onClick={onToggle}>
-        <h3>Education</h3>
-        {collapsed ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
-      </div>
-      {!collapsed && (
-        <>
-          {data.map((item, index) => (
-            <div key={index} className="array-item">
-              <input value={item.degree} onChange={(e) => onChange(index, 'degree', e.target.value)} placeholder="Degree (e.g. High School Diploma)" />
-              <input value={item.school} onChange={(e) => onChange(index, 'school', e.target.value)} placeholder="School Name" />
-              <input value={item.period} onChange={(e) => onChange(index, 'period', e.target.value)} placeholder="Period (e.g. 2011 - 2015)" />
-              {data.length > 1 && (
-                <button type="button" className="remove-btn" onClick={() => onRemove(index)}>
-                  <Trash2 size={16} />
-                </button>
-              )}
-            </div>
-          ))}
-          <button type="button" className="add-btn" onClick={onAdd}>
-            <Plus size={16} /> Add Education
-          </button>
-        </>
+    <ArrayListForm
+      data={data}
+      onAdd={onAdd}
+      addLabel="Add Education"
+      revealLabel="education entries"
+      renderItem={(item, index) => (
+        <div key={index} className="array-item">
+          <input value={item.degree} onChange={(e) => onChange(index, 'degree', e.target.value)} placeholder="e.g. BA Business Administration" />
+          <input value={item.school} onChange={(e) => onChange(index, 'school', e.target.value)} placeholder="e.g. University name" />
+          <input value={item.period} onChange={(e) => onChange(index, 'period', e.target.value)} placeholder="e.g. 2019 – 2023" />
+          {data.length > 1 && (
+            <button type="button" className="remove-btn" onClick={() => onRemove(index)} aria-label={`Remove education ${index + 1}`}>
+              <Trash2 size={16} />
+            </button>
+          )}
+        </div>
       )}
-    </div>
+    />
   )
 }
 

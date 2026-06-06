@@ -1,31 +1,25 @@
-import { ChevronDown, ChevronUp, Plus, Trash2 } from 'lucide-react'
+import { Trash2 } from 'lucide-react'
+import ArrayListForm from '../shared/ArrayListForm'
 
-function Languages({ data, collapsed, onToggle, onChange, onAdd, onRemove }) {
+function Languages({ data, onChange, onAdd, onRemove }) {
   return (
-    <div className="form-section collapsible">
-      <div className="section-header" onClick={onToggle}>
-        <h3>Languages</h3>
-        {collapsed ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
-      </div>
-      {!collapsed && (
-        <>
-          {data.map((item, index) => (
-            <div key={index} className="array-item">
-              <input value={item.name} onChange={(e) => onChange(index, 'name', e.target.value)} placeholder="Language (e.g. English)" />
-              <input value={item.level} onChange={(e) => onChange(index, 'level', e.target.value)} placeholder="Level (e.g. Native or Bilingual Proficiency)" />
-              {data.length > 1 && (
-                <button type="button" className="remove-btn" onClick={() => onRemove(index)}>
-                  <Trash2 size={16} />
-                </button>
-              )}
-            </div>
-          ))}
-          <button type="button" className="add-btn" onClick={onAdd}>
-            <Plus size={16} /> Add Language
-          </button>
-        </>
+    <ArrayListForm
+      data={data}
+      onAdd={onAdd}
+      addLabel="Add Language"
+      revealLabel="languages"
+      renderItem={(item, index) => (
+        <div key={index} className="array-item">
+          <input value={item.name} onChange={(e) => onChange(index, 'name', e.target.value)} placeholder="e.g. English" />
+          <input value={item.level} onChange={(e) => onChange(index, 'level', e.target.value)} placeholder="e.g. Professional Working Proficiency" />
+          {data.length > 1 && (
+            <button type="button" className="remove-btn" onClick={() => onRemove(index)} aria-label={`Remove language ${index + 1}`}>
+              <Trash2 size={16} />
+            </button>
+          )}
+        </div>
       )}
-    </div>
+    />
   )
 }
 

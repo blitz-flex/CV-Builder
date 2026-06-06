@@ -1,17 +1,100 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tangerine:wght@700&family=Great+Vibes&family=Spectral:wght@300;400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import './styles/base/mobile.css';
 
 :root {
-  --primary: #2563eb;
-  --primary-dark: #1e40af;
-  --secondary: #64748b;
-  --accent: #3b82f6;
-  --background: #fbfcfd;
-  --surface: #ffffff;
-  --glass: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(226, 232, 240, 0.8);
-  --text-main: #0f172a;
-  --text-muted: #475569;
-  --border: #e2e8f0;
+  /* Design System - Vintage Theme Colors */
+  --color-gold-base: #d4af37;
+  --color-gold-dark: #b8860b;
+  --color-gold-light: #fde047;
+  --color-gold-pale: #e6d5a7;
+  --color-gold-muted: #bfae8c;
+  
+  --color-bg-primary: #151631;
+  --color-bg-secondary: #2e2f6a;
+  --color-bg-tertiary: #1e1f4a;
+  --color-bg-overlay: rgba(5, 6, 15, 0.5);
+  --color-bg-card: rgba(8, 9, 22, 0.72);
+  
+  --color-surface-light: rgba(255, 255, 255, 0.96);
+  --color-surface-lighter: #faf8f3;
+  --color-surface-white: #ffffff;
+  
+  --color-text-primary: #f1ebd5;
+  --color-text-secondary: #bfae8c;
+  --color-text-muted: #94a3b8;
+  --color-text-dark: #1e293b;
+  
+  --color-success: #4ade80;
+  --color-error: #ef4444;
+  --color-error-light: #fca5a5;
+  
+  /* Spacing Scale (based on 4px) */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-7: 1.75rem;  /* 28px */
+  --space-8: 2rem;     /* 32px */
+  
+  /* Font Sizes */
+  --text-xs: 0.625rem;   /* 10px */
+  --text-sm: 0.75rem;    /* 12px */
+  --text-base: 0.875rem; /* 14px */
+  --text-md: 1rem;       /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  
+  /* Border Radius */
+  --radius-sm: 0.5rem;   /* 8px */
+  --radius-md: 0.625rem; /* 10px */
+  --radius-lg: 0.75rem;  /* 12px */
+  --radius-xl: 1rem;     /* 16px */
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 0.15s;
+  --transition-base: 0.2s;
+  --transition-slow: 0.35s;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 2px 12px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 6px 20px rgba(0, 0, 0, 0.35);
+  
+  /* Z-index Scale */
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-sticky: 100;
+  --z-overlay: 900;
+  --z-modal: 1000;
+  
+  /* Border Colors with Opacity */
+  --border-gold-10: rgba(212, 175, 55, 0.1);
+  --border-gold-12: rgba(212, 175, 55, 0.12);
+  --border-gold-14: rgba(212, 175, 55, 0.14);
+  --border-gold-15: rgba(212, 175, 55, 0.15);
+  --border-gold-16: rgba(212, 175, 55, 0.16);
+  --border-gold-18: rgba(212, 175, 55, 0.18);
+  --border-gold-20: rgba(212, 175, 55, 0.2);
+  --border-gold-22: rgba(212, 175, 55, 0.22);
+  --border-gold-25: rgba(212, 175, 55, 0.25);
+  --border-gold-28: rgba(212, 175, 55, 0.28);
+  --border-gold-30: rgba(212, 175, 55, 0.3);
+  --border-gold-32: rgba(212, 175, 55, 0.32);
+  --border-gold-35: rgba(212, 175, 55, 0.35);
+  --border-gold-50: rgba(212, 175, 55, 0.5);
+  
+  /* Background Colors with Opacity */
+  --bg-gold-05: rgba(212, 175, 55, 0.05);
+  --bg-gold-08: rgba(212, 175, 55, 0.08);
+  --bg-gold-10: rgba(212, 175, 55, 0.1);
+  --bg-gold-12: rgba(212, 175, 55, 0.12);
+  --bg-gold-15: rgba(212, 175, 55, 0.15);
+  --bg-gold-20: rgba(212, 175, 55, 0.2);
 }
 
 * {
@@ -22,10 +105,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  font-size: var(--text-fluid-base);
   background-color: #151631; /* Global dark default to prevent white leaks */
-  color: var(--text-main);
+  color: #0f172a;
   line-height: 1.5;
   overflow-x: hidden;
   min-width: 0;

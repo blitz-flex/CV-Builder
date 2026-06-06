@@ -1,0 +1,67 @@
+.editor-skeleton {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-primary);
+  padding-inline: max(var(--space-4), var(--safe-left)) max(var(--space-4), var(--safe-right));
+}
+
+.editor-skeleton__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-block: var(--space-4);
+}
+
+.editor-skeleton__title {
+  height: 1.5rem;
+  width: 60%;
+  max-width: 12rem;
+}
+
+.editor-skeleton__badge {
+  height: 0.875rem;
+  width: 40%;
+  max-width: 8rem;
+}
+
+.editor-skeleton__progress {
+  height: 3.5rem;
+  margin-block-end: var(--space-3);
+  border-radius: var(--radius-lg);
+}
+
+.editor-skeleton__pills {
+  display: flex;
+  gap: var(--space-2);
+  overflow: hidden;
+  margin-block-end: var(--space-3);
+}
+
+.editor-skeleton__pill {
+  flex-shrink: 0;
+  width: 5.5rem;
+  height: 2.25rem;
+  border-radius: var(--radius-full);
+}
+
+.editor-skeleton__sections {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-block-end: var(--space-4);
+}
+
+.editor-skeleton__section {
+  height: 3rem;
+  border-radius: var(--radius-lg);
+}
+
+.editor-skeleton__footer {
+  padding-block: var(--space-3);
+}
+
+.editor-skeleton__btn {
+  height: 2.75rem;
+  border-radius: var(--radius-lg);
+}

@@ -1,30 +1,24 @@
-import { ChevronDown, ChevronUp, Plus, Trash2 } from 'lucide-react'
+import { Trash2 } from 'lucide-react'
+import ArrayListForm from '../shared/ArrayListForm'
 
-function Programs({ data, collapsed, onToggle, onChange, onAdd, onRemove }) {
+function Programs({ data, onChange, onAdd, onRemove }) {
   return (
-    <div className="form-section collapsible">
-      <div className="section-header" onClick={onToggle}>
-        <h3>Programs & Software</h3>
-        {collapsed ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
-      </div>
-      {!collapsed && (
-        <>
-          {data.map((item, index) => (
-            <div key={index} className="array-item">
-              <input value={item.name} onChange={(e) => onChange(index, 'name', e.target.value)} placeholder="Program" />
-              {data.length > 1 && (
-                <button type="button" className="remove-btn" onClick={() => onRemove(index)}>
-                  <Trash2 size={16} />
-                </button>
-              )}
-            </div>
-          ))}
-          <button type="button" className="add-btn" onClick={onAdd}>
-            <Plus size={16} /> Add Program
-          </button>
-        </>
+    <ArrayListForm
+      data={data}
+      onAdd={onAdd}
+      addLabel="Add Program"
+      revealLabel="programs"
+      renderItem={(item, index) => (
+        <div key={index} className="array-item">
+          <input value={item.name} onChange={(e) => onChange(index, 'name', e.target.value)} placeholder="e.g. Microsoft Excel, Figma, Photoshop" />
+          {data.length > 1 && (
+            <button type="button" className="remove-btn" onClick={() => onRemove(index)} aria-label={`Remove program ${index + 1}`}>
+              <Trash2 size={16} />
+            </button>
+          )}
+        </div>
       )}
-    </div>
+    />
   )
 }
 

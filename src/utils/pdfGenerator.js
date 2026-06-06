@@ -5,7 +5,11 @@ export const generatePDF = (element, filename = 'CV') => {
     margin: [5, 0,5, 5],
     filename: `${filename}.pdf`,
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, windowHeight: element.scrollHeight },
+    html2canvas: {
+      scale: 2,
+      windowHeight: element.scrollHeight,
+      ignoreElements: (el) => el.classList?.contains('pdf-exclude')
+    },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
     pagebreak: { mode: 'css', before: '.page-break' }
   }

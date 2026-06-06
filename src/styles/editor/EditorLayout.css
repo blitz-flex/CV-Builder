@@ -1,0 +1,111 @@
+/* ===========================
+   Editor Layout — two-panel grid, form scroll container, mobile modal
+   =========================== */
+
+/* ── Two-panel grid ── */
+.cv-builder {
+    display: grid;
+    grid-template-columns: minmax(min(100%, 420px), 500px) 1fr;
+    min-height: var(--vh-fallback);
+    min-height: var(--vh-full);
+    background: var(--color-bg-primary);
+}
+
+/* ── Form panel ── */
+.form-side {
+    --form-inset-left: max(var(--space-4), var(--safe-left));
+    --form-inset-right: max(var(--space-4), var(--safe-right));
+
+    display: flex;
+    flex-direction: column;
+    height: var(--vh-fallback);
+    height: var(--vh-full);
+    background: radial-gradient(circle at center, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+    border-inline-end: 1px solid var(--border-gold-15);
+    position: relative;
+    z-index: var(--z-base);
+    min-width: 0;
+}
+
+.form-side::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png');
+    opacity: 0.28;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Scrollable form content ── */
+.form-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-block: var(--space-2) var(--space-5);
+    padding-inline: var(--form-inset-left) var(--form-inset-right);
+    position: relative;
+    z-index: var(--z-base);
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-gold-35) transparent;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+.form-scroll::-webkit-scrollbar { width: 6px; }
+.form-scroll::-webkit-scrollbar-thumb {
+    background: var(--border-gold-35);
+    border-radius: var(--radius-full);
+}
+
+/* ── Mobile preview overlay ── */
+.preview-container {
+    display: none;
+}
+
+.preview-container[hidden] {
+    display: none !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1280px) {
+    .cv-builder {
+        grid-template-columns: minmax(min(100%, 380px), 440px) 1fr;
+    }
+}
+
+@media (max-width: 1024px) {
+    .cv-builder {
+        grid-template-columns: 1fr;
+    }
+
+    .form-side {
+        height: auto;
+        min-height: var(--vh-fallback);
+        min-height: var(--vh-full);
+        border-inline-end: none;
+    }
+
+    .form-scroll {
+        overflow-y: visible;
+        padding-block-end: var(--space-4);
+    }
+
+    .cv-builder.preview-active {
+        height: var(--vh-fallback);
+        height: var(--vh-full);
+        overflow: hidden;
+    }
+
+    .cv-builder.preview-active .form-side {
+        display: none;
+    }
+
+    .preview-container.show {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: var(--z-modal);
+        background: #05060f;
+    }
+}

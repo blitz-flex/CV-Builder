@@ -1,67 +1,71 @@
 # CV Builder
 
-**A modern, privacy-focused resume builder developed with React.**
+**A modern, privacy-focused resume builder built with React.**
 
-CV Builder allows users to create professional-grade resumes effortlessly. It features a responsive editing interface, real-time preview, and high-quality PDF export—all without requiring user registration.
+Create professional, print-ready CVs entirely in your browser — no account, no backend, no data leaving your device.
+
+
+## Overview
+
+CV Builder takes you from template selection to a finished PDF in a single flow. The editor mirrors your input in a live A4 preview, persists drafts locally as you type, and scales cleanly from desktop to mobile.
 
 ## Features
 
-- **Real-time Preview:** Instantly see changes as you edit your information.
-- **One-click Export:** Generate print-ready PDF files immediately.
-- **Customizable Design:** Choose from curated color schemes and professional fonts.
-- **Privacy First:** No sign-up required. Your data lives in your browser session.
-- **Responsive Interface:** Full editing capabilities on desktop and mobile devices.
+- **Template gallery** — Five curated layouts (single-column, two-column, executive header, and more), each with dedicated typography and accent styling.
+- **Structured editor** — Nine guided sections: personal info, profile summary, work experience, education, skills, software, languages, training, and projects.
+- **Live preview** — Every edit updates a print-accurate preview in real time.
+- **Design controls** — Adjust accent color and font family without leaving the editor.
+- **PDF export** — Download a print-ready document in one click.
+- **Auto-save** — Drafts are written to `localStorage` with debounced saves and a 30-day retention window.
+- **Privacy-first** — No sign-up and no server-side storage; your CV data stays on your device.
+- **Responsive UI** — Full editing workflow on desktop and mobile, with touch-friendly navigation.
 
-## Technology Stack
+## Tech Stack
 
-- **Framework:** React 19
-- **Build Tool:** Vite
-- **Styling:** Modern CSS3 (Grid/Flexbox)
-- **Icons:** Lucide React
-- **PDF Generation:** html2pdf.js
-
-## Getting Started
-
-Follow these steps to set up the project locally.
-
-### Prerequisites
-- Node.js (v18+)
-- npm
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/blitz-flex/CV-Builder.git
-   cd CV-Builder
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-The application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-To create an optimized production build:
-
-```bash
-npm run build
-```
+| Layer | Technology |
+|-------|------------|
+| UI | React 19 |
+| Routing | React Router 7 |
+| Build | Vite 6 |
+| Styling | CSS (Grid, Flexbox, custom properties) |
+| Icons | Lucide React |
+| PDF | html2pdf.js |
 
 ## Project Structure
 
-- `src/components/` - React components for the Form and Preview.
-- `src/styles/` - Modular CSS files organized by page (Editor/Welcome).
-- `src/utils/` - Helper functions for PDF generation.
+```
+src/
+├── components/
+│   ├── form/          # Section editors (PersonalInfo, WorkExperience, …)
+│   ├── preview/       # Live CV preview (header, columns, document shell)
+│   ├── shared/        # Reusable UI (section cards, nav pills, form layout)
+│   ├── CVForm.jsx     # Main editor page
+│   ├── TemplatePicker.jsx
+│   └── Welcome.jsx    # Landing page
+├── config/
+│   ├── cvTemplates.js # Template definitions (layout, font, accent)
+│   ├── formSections.js
+│   ├── formTemplates.js
+│   ├── colors.js
+│   └── fonts.js
+├── hooks/             # useFormData, useDebouncedSave, useMediaQuery, …
+├── styles/
+│   ├── cv/            # Document and template theme styles
+│   ├── editor/        # Form and preview panel styles
+│   ├── templates/     # Template picker styles
+│   └── welcome/       # Landing page styles
+└── utils/
+    ├── pdfGenerator.js
+    ├── storage.js     # localStorage draft persistence
+    └── cvHelpers.js
+```
 
-##  Live Site
+## How It Works
 
-[ 📝 CV Bulder](https://cv-builds.netlify.app/)
+1. **Welcome** (`/`) — Landing page and entry point.
+2. **Templates** (`/templates`) — Choose a layout and visual style.
+3. **Editor** (`/create`) — Complete each section; preview and draft update as you type.
+4. **Export** — Download the finished CV as a PDF.
+
+---
+

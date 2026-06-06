@@ -1,0 +1,70 @@
+/* ===========================
+   Form Progress Head — section completion bar
+   =========================== */
+
+.form-workspace {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    width: 100%;
+}
+
+.form-progress-head {
+    flex-shrink: 0;
+    margin-block: var(--space-4) var(--space-3);
+    margin-inline: var(--form-inset-left) var(--form-inset-right);
+    padding-block: var(--space-4);
+    padding-inline: var(--space-4);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-gold-20);
+    background: rgba(5, 6, 15, 0.92);
+    backdrop-filter: blur(6px);
+    position: relative;
+    z-index: var(--z-dropdown);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+
+.form-progress-head__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-1);
+    margin-block-end: var(--space-3);
+}
+
+.form-progress-head__label {
+    font-family: 'Cinzel', serif;
+    font-size: var(--text-fluid-sm);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold-pale);
+}
+
+.form-progress-head__count {
+    font-family: 'Spectral', serif;
+    font-size: var(--text-fluid-sm);
+    font-weight: 600;
+    color: var(--color-gold-base);
+    white-space: nowrap;
+}
+
+.form-progress-head__bar {
+    height: 4px;
+    border-radius: var(--radius-full);
+    background: var(--bg-gold-12);
+    overflow: hidden;
+}
+
+.form-progress-head__bar-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: linear-gradient(
+        to right,
+        var(--editor-accent, var(--color-gold-dark)),
+        var(--editor-accent, var(--color-gold-base)),
+        var(--color-gold-light)
+    );
+    transition: width var(--transition-slow) ease;
+}

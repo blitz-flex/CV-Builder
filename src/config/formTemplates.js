@@ -29,7 +29,7 @@ export const INITIAL_FORM_DATA = {
 }
 
 export const INITIAL_COLLAPSED_STATE = {
-  personalInfo: true,
+  personalInfo: false,
   profile: true,
   education: true,
   workExperience: true,

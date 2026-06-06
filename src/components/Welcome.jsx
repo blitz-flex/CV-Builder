@@ -6,9 +6,9 @@ function Welcome() {
   const navigate = useNavigate()
 
   return (
-    <div className="welcome vintage-theme">
-      <div className="vintage-bg">
-        <div className="texture-overlay"></div>
+    <main className="welcome vintage-theme u-dvh-full">
+      <div className="vintage-bg" aria-hidden="true">
+        <div className="texture-overlay" />
       </div>
 
       <div className="content">
@@ -21,7 +21,7 @@ function Welcome() {
           </p>
           <div className="actions">
             <div className="button-frame">
-              <button className="gold-btn" onClick={() => navigate('/create')}>
+              <button type="button" className="gold-btn" onClick={() => navigate('/templates')}>
                 Get Started Free
               </button>
             </div>
@@ -67,7 +67,7 @@ function Welcome() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

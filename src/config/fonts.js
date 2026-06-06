@@ -1,6 +1,7 @@
 export const FONTS = [
   { value: 'Helvetica', label: 'Helvetica' },
   { value: 'Inter', label: 'Inter' },
+  { value: 'Merriweather', label: 'Merriweather' },
   { value: 'Times New Roman', label: 'Times New Roman' },
   { value: 'Roboto', label: 'Roboto' },
   { value: 'Montserrat', label: 'Montserrat' },
@@ -9,4 +10,4 @@ export const FONTS = [
   { value: 'Poppins', label: 'Poppins' }
 ]
 
-export const DEFAULT_FONT = 'Helvetica'
+export const DEFAULT_FONT = 'Inter'
