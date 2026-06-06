@@ -1,7 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { FORM_SECTIONS } from '../../config/formSections'
 import { isSectionFilled } from '../../utils/cvHelpers'
-import { scrollToSection } from '../../utils/scroll'
 import '../../styles/editor/SectionNavPills.css'
 
 function SectionNavPills({ formData, activeSection, onSelectSection }) {
@@ -23,7 +22,6 @@ function SectionNavPills({ formData, activeSection, onSelectSection }) {
 
   const handleSelect = (key) => {
     onSelectSection(key)
-    scrollToSection(key)
   }
 
   return (

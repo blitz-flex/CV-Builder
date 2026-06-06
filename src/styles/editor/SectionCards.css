@@ -9,6 +9,18 @@
     gap: var(--space-2);
 }
 
+.form-sections-stack--single {
+    gap: 0;
+}
+
+.form-section-card.is-static .form-section-card__head {
+    cursor: default;
+}
+
+.form-section-card.is-static .form-section-card__head:hover {
+    background: var(--bg-gold-10);
+}
+
 /* ── Card shell ── */
 .form-section-card {
     border-radius: var(--radius-lg);

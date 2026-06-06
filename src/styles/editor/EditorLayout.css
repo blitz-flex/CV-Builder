@@ -40,6 +40,7 @@
 /* ── Scrollable form content ── */
 .form-scroll {
     flex: 1;
+    min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
     padding-block: var(--space-2) var(--space-5);
@@ -80,15 +81,19 @@
     }
 
     .form-side {
-        height: auto;
-        min-height: var(--vh-fallback);
-        min-height: var(--vh-full);
+        height: var(--vh-fallback);
+        height: var(--vh-full);
+        min-height: 0;
         border-inline-end: none;
     }
 
     .form-scroll {
-        overflow-y: visible;
-        padding-block-end: var(--space-4);
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        padding-block-end: max(var(--space-4), var(--safe-bottom));
     }
 
     .cv-builder.preview-active {

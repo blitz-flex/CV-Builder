@@ -15,10 +15,12 @@ import { useDebouncedSave } from '../hooks/useDebouncedSave'
 import { useIsDesktop } from '../hooks/useMediaQuery'
 import { useFormData } from '../hooks/useFormData'
 import { generatePDF } from '../utils/pdfGenerator'
+import { scrollToSection } from '../utils/scroll'
 import '../styles/editor/CVForm.css'
 
 function CVForm() {
   const cvRef = useRef()
+  const formScrollRef = useRef(null)
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
@@ -111,6 +113,17 @@ function CVForm() {
   const handleSectionSelect = (section) => {
     openSection(section)
     setActiveSection(section)
+
+    if (isDesktop) {
+      scrollToSection(section)
+      return
+    }
+
+    const scrollEl = formScrollRef.current
+    if (!scrollEl) return
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    scrollEl.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' })
   }
 
   const handleAddItem = (section) => {
@@ -200,7 +213,7 @@ function CVForm() {
           onSelectSection={handleSectionSelect}
         />
 
-        <div className="form-scroll">
+        <div className="form-scroll" ref={formScrollRef}>
           <FormColumns
             formData={formData}
             collapsed={collapsed}
@@ -209,6 +222,8 @@ function CVForm() {
             handleArrayChange={handleArrayChange}
             addItem={handleAddItem}
             removeItem={removeItem}
+            activeSection={activeSection}
+            isDesktop={isDesktop}
           />
         </div>
 

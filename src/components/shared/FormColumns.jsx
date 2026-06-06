@@ -78,27 +78,45 @@ const SECTION_RENDERERS = {
     />,
 }
 
-function FormColumns({ formData, collapsed, toggleSection, handleChange, handleArrayChange, addItem, removeItem }) {
+function FormColumns({
+  formData,
+  collapsed,
+  toggleSection,
+  handleChange,
+  handleArrayChange,
+  addItem,
+  removeItem,
+  activeSection,
+  isDesktop = true,
+}) {
   const rendererProps = { formData, handleChange, handleArrayChange, addItem, removeItem }
+  const sections = isDesktop
+    ? FORM_SECTIONS
+    : FORM_SECTIONS.filter((section) => section.key === activeSection)
 
   return (
-    <div className="form-sections-stack">
-      {FORM_SECTIONS.map((section, index) => (
-        <FormSectionCard
-          key={section.key}
-          id={`section-${section.key}`}
-          index={index}
-          label={section.label}
-          short={section.short}
-          icon={section.icon}
-          collapsed={collapsed[section.key]}
-          onToggle={() => toggleSection(section.key)}
-          isFilled={isSectionFilled(section.key, formData)}
-          hint={section.hint}
-        >
-          {SECTION_RENDERERS[section.key]?.(rendererProps)}
-        </FormSectionCard>
-      ))}
+    <div className={`form-sections-stack${isDesktop ? '' : ' form-sections-stack--single'}`}>
+      {sections.map((section) => {
+        const index = FORM_SECTIONS.findIndex((item) => item.key === section.key)
+
+        return (
+          <FormSectionCard
+            key={section.key}
+            id={`section-${section.key}`}
+            index={index}
+            label={section.label}
+            short={section.short}
+            icon={section.icon}
+            collapsed={isDesktop ? collapsed[section.key] : false}
+            onToggle={isDesktop ? () => toggleSection(section.key) : undefined}
+            collapsible={isDesktop}
+            isFilled={isSectionFilled(section.key, formData)}
+            hint={section.hint}
+          >
+            {SECTION_RENDERERS[section.key]?.(rendererProps)}
+          </FormSectionCard>
+        )
+      })}
     </div>
   )
 }

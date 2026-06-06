@@ -1,19 +1,32 @@
 import { Check, ChevronDown, ChevronUp } from 'lucide-react'
 
-function FormSectionCard({ id, index, label, short, icon: Icon, collapsed, onToggle, isFilled, hint, children }) {
+function FormSectionCard({
+  id,
+  index,
+  label,
+  short,
+  icon: Icon,
+  collapsed,
+  onToggle,
+  collapsible = true,
+  isFilled,
+  hint,
+  children,
+}) {
   const num = String(index + 1).padStart(2, '0')
-  const isOpen = !collapsed
+  const isOpen = collapsible ? !collapsed : true
+  const HeadTag = collapsible ? 'button' : 'div'
 
   return (
     <article
       id={id}
-      className={`form-section-card${isOpen ? ' is-open' : ''}${isFilled ? ' is-filled' : ''}`}
+      className={`form-section-card${isOpen ? ' is-open' : ''}${isFilled ? ' is-filled' : ''}${collapsible ? '' : ' is-static'}`}
     >
-      <button
-        type="button"
+      <HeadTag
+        type={collapsible ? 'button' : undefined}
         className="form-section-card__head"
-        onClick={onToggle}
-        aria-expanded={isOpen}
+        onClick={collapsible ? onToggle : undefined}
+        aria-expanded={collapsible ? isOpen : undefined}
         aria-controls={`${id}-body`}
         id={`${id}-head`}
       >
@@ -27,13 +40,15 @@ function FormSectionCard({ id, index, label, short, icon: Icon, collapsed, onTog
         </span>
         <span className="form-section-card__status" aria-hidden="true">
           {isFilled && <Check size={14} className="form-section-card__check" />}
-          {isOpen ? (
-            <ChevronUp size={16} className="form-section-card__chevron" />
-          ) : (
-            <ChevronDown size={16} className="form-section-card__chevron" />
+          {collapsible && (
+            isOpen ? (
+              <ChevronUp size={16} className="form-section-card__chevron" />
+            ) : (
+              <ChevronDown size={16} className="form-section-card__chevron" />
+            )
           )}
         </span>
-      </button>
+      </HeadTag>
 
       {isOpen && (
         <div className="form-section-body" id={`${id}-body`} role="region" aria-labelledby={`${id}-head`}>
